@@ -1,14 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mintoo</title>
+  <title>みんなのツールボックス</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
+<!--ボディ本文-->
+
+<body>
+  
+  <!--ヘッダー-->
+  
+  <header class="header">
+    <div class="header_bar row">
+      <h1 class="grid-6"><a href="/"></a>みんなのツールボックス</h1>
+      
+      <!--ユーザーがサインインしてる場合-->
+      
+      <% if use_signed_in? %>
+      <div class="user_nav grid-6">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <a class="post" href="/tweets/new">投稿する！</a>
+      </div>
+      
+      <!--ユーザーがサインインしていない場合-->
+      
+      <% else %>
+      <div class="user_nav grid-6">
+        <%= link_to "ログイン", new_user_session_path, class:  'post' %>
+        <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+      </div>
+      
+      <% end %>
+      
+    </div>
+  </header>
+  
+  <!--メニュー左端-->
+  <div id="menu">
+    <ul id="menu_body">
+      
+      <li ><a href="xxx.html"> モンキーレンチ</a></li>
+      <li ><a href="xxx.html"> パイプレンチ</a></li>
+      <li ><a href="xxx.html"> プラスドライバー</a></li>
+      <li ><a href="xxx.html"> プラスチックハンマー</a></li>
+      <li ><a href="xxx.html"> スパナレンチ</a></li>
+      <li ><a href="xxx.html"> ラチェットレンチ</a></li>
+      
+      
+ 
+      
+      
+    </ul>
+    
+  </div>
+
+
+<!--コンテンツ中央-->
+
+  <div id="content clearfix">
+    
+    
+  </div>
+  
 <%= yield %>
+
+  <footer>
+    <p>
+      Copyright noby 2018.
+    </p>
+  </footer>
 
 </body>
 </html>

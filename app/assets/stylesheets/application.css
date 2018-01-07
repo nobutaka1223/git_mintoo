@@ -1,3 +1,47 @@
+body{
+    background-color:  #f0f0f0;
+    font-size: 14px;
+    color: #333;
+    margin: 0 auto;
+}
+
+title {
+    font-size: 20px;
+    color: black;
+    text-align:center ;
+}
+
+header {
+  background-color: gray;
+  height: 150px;
+  margin: 0 auto;
+}
+
+
+#menu{
+    background-color: white;
+    float: left;
+}
+
+#clearfix:after{
+    content: ""
+    clear: both;
+    display: block;
+    background-color: white;
+
+}
+
+
+a {
+    color:red;
+    
+}
+
+a:hover {
+    color: blue;
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
