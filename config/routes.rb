@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
   
-  devise_for :users
-  get 'posts' => 'posts#index'  #投稿一覧画面
+  devise_for :users  #投稿一覧画面
   root     'posts#index'  #/からの投稿一覧
-  get 'posts' => 'posts#new'    #投稿作成画面
+  get 'posts/new' => 'posts#new'    #投稿作成画面
   post 'posts' => 'posts#create'    #投稿作成動作
+  
+  get 'users/:id'  => 'users#show'  #Mypageへのルーティング
+  
+  
+  
+  
+  
+  
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

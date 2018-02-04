@@ -1,11 +1,21 @@
 <div class="content_row">
-    <%= form_tag('/posts' method: :post) do %>
-        <h3>
-            投稿する
-        </h3>
-        <input placeholder=""
-        <input placeholder="image Url" type="text" name="image">
-        <textarea cols="30" name="text" placeholder="text" rows="10"></textarea>
-        <input type="submit" value="SENT">
-    < %end %>
+  <%= form_for @post do |f| %>
+    <div class="field">
+        
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title%>
+        
+        
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      
+      <%= f.label :content, "本文"%>
+      <%= f.text_field :content%>
+    </div>
+
+
+   <div class="actions">
+    <%= f.submit %>
+   </div>
+    <% end %>
 </div>

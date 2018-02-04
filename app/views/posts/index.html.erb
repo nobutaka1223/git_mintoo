@@ -1,10 +1,19 @@
 <div class="contents row" >
   <% @posts.each do |post| %>
     <div class="content_post" style="background-image": url(<%= post.image %>);">
-    <%= simple_format(post.text) %>
-    <span class="name"><%= post.name %></span>
+
     </div>
     
+    <%= post.title%>
+    
+    <%= image_tag(post.image) %>
+    <%= post.image %>
+    
+    <%= post.content%>
+    
   <% end %>
-  <%= paginate(@tweets) %>
+  
+  <%= paginate(@posts) %>
+  
+  
 </div>

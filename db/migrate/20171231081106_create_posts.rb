@@ -1,4 +1,5 @@
 class CreatePosts < ActiveRecord::Migration
+
   def change
     create_table :posts do |t|
       
@@ -6,8 +7,8 @@ class CreatePosts < ActiveRecord::Migration
       t.integer      :tool_id
       t.string        :title
       t.text          :content
-      t.text          :image
       t.timestamps 
+      t.string     :image
     end
   end
 end
