@@ -11,6 +11,13 @@
       
       <%= f.label :content, "本文"%>
       <%= f.text_field :content%>
+      
+      <%= f.label :tool, "カテゴリ"%>
+      <%= f.collection_select :tool_id, Tool.all, :id, :name%>
+      
+    
+      
+      
     </div>
 
 

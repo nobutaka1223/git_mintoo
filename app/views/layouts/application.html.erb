@@ -15,7 +15,7 @@
   
   <header class="header">
     <div class="header__bar row">
-      <h1 class="grid-6"><a href="/"></a>みんなのツールボックス</h1>
+      <h1 class="grid-6"><a href="/">みんなのツールボックス</a></h1>
       
       <!--ユーザーがサインインしてる場合-->
       
@@ -31,7 +31,7 @@
            </li>
            
          </ul>
-         </span>
+        </span>
             <a class="post" href="/posts/new">投稿する！</a>
       </div>
       
@@ -52,12 +52,10 @@
   <div id="menu">
     <ul id="menu_body">
       
-      <li ><a href="xxx.html"> モンキーレンチ</a></li>
-      <li ><a href="xxx.html"> パイプレンチ</a></li>
-      <li ><a href="xxx.html"> プラスドライバー</a></li>
-      <li ><a href="xxx.html"> プラスチックハンマー</a></li>
-      <li ><a href="xxx.html"> スパナレンチ</a></li>
-      <li ><a href="xxx.html"> ラチェットレンチ</a></li>
+      <%  $tools.each do |f| %>
+      <li ><a href=/posts/<%= f.id%>> <%= f.name%> (<%=f.posts.count %>) </a></li>
+      <% end%>
+      
       
       
  

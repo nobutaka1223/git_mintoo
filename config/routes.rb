@@ -5,9 +5,14 @@ Rails.application.routes.draw do
   get 'posts/new' => 'posts#new'    #投稿作成画面
   post 'posts' => 'posts#create'    #投稿作成動作
   
+  get 'posts/:id' => 'posts#show'   #投稿詳細画面
+  delete 'posts/:id'  => 'posts#destroy'
+  
+  
   get 'users/:id'  => 'users#show'  #Mypageへのルーティング
+  get 'tools/:id'  => 'tools#see'   #ツールのページ
   
-  
+
   
   
   
