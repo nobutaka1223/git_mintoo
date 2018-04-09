@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
-    
-    
-    
+      #before_action :authenticate_user!
     
     def index
         @posts = Post.includes(:user).order("created_at DESC").page(params[:page]).per(5)
@@ -19,13 +17,18 @@ class PostsController < ApplicationController
         
         # Post.create(post_params)
         current_user.posts.create(post_params)
-        redirect_to :root
+        redirect_to action: :index
     end
 
 
     def show
         @post = Post.find(params[:id])
+        @comments = @post.comments.includes(:user)
+    end
     
+    def edit
+        redirect_to action: :index  unless user_signed_in?
+        @post = Post.find(params[:id])
     end
 
 
@@ -35,13 +38,14 @@ class PostsController < ApplicationController
         post = Post.find(params[:id])
 
         post.destroy if post.user_id == current_user.id
-        
     end
 
+    
+    
 
     private
     def post_params
-        params.require(:post).permit(:title, :image, :content)
+        params.require(:post).permit(:title, :image, :content, :tool_id)
     end
     
     

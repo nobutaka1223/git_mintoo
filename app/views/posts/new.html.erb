@@ -1,6 +1,12 @@
 <div class="content_row">
+  <p>みんなのツールボックスに投稿しよう</p>
+      <br>
+  
+  <div class="container">
   <%= form_for @post do |f| %>
     <div class="field">
+      
+      
         
       <%= f.label :title, "タイトル" %>
       <%= f.text_field :title%>
@@ -25,4 +31,5 @@
     <%= f.submit %>
    </div>
     <% end %>
+  </div>
 </div>

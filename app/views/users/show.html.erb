@@ -1,10 +1,18 @@
 <div class="contents row">
+    <div class="user_image"><%= image_tag current_user.avatar %></div>
+    <p><%= @nickname %>さんの自己紹介</p>
+    <p><%= @introduction %></p>
+    
+    <% if current_user.id == @user.id %>
+    <%=link_to "ユーザー登録情報を変更する",edit_user_path, method: :get %>
+    <% end %>
+    
     <p><%= @nickname %>さんの投稿一覧</p>
     <% @posts.each do |post| %>
-        <div class ="contents_post" style="background-image: url(<%= post.image %>);">
-            <%= simple_format(post.text) %>
-            <span class="name"><%= post.name %></span>
-        </div>
-    <% end %>
+        <%= render partial: "posts/posts", locals: { post: post } %>
+    <% end %> 
+    
+    
+    
     
 </div>

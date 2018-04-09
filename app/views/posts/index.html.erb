@@ -1,30 +1,10 @@
 <div class="contents row" >
   <% @posts.each do |post| %>
-    <div class="content_post" style="background-image": url(<%= post.image %>);>
-
-    
-    
-    <%= post.title%>
-    <span>投稿者</span><%= post.user.nickname  %>
-    
-    <%= image_tag(post.image) %>
-    <%= post.image %>
-    
-    <%= post.content%>
-    
-    <% if post.user_id == current_user.id %>
-    
-      <%= link_to '投稿を削除する', "/posts/#{post.id}", method: :delete %>
-    <% end %>
-    
-    
-    <%= link_to '投稿の詳細！', "/posts/#{post.id}", method: :get %>
-    
-    </div>  
+     <%= render partial: "posts", locals: { post: post } %>
   <% end %>
-  </div>
+
   
-  <%= paginate(@posts) %>
+
   
     
   

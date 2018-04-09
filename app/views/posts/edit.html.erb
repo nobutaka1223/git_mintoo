@@ -1,0 +1,32 @@
+<div class="content_row">
+    <p>投稿内容を編集しよう</p>
+      <br>
+  <%= form_for @post,:url => {:action => :update} do |f| %>
+    <div class="field">
+        
+      
+        
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title%>
+        
+        
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      
+      <%= f.label :content, "本文"%>
+      <%= f.text_field :content%>
+      
+      <%= f.label :tool, "カテゴリ"%>
+      <%= f.collection_select :tool_id, Tool.all, :id, :name%>
+      
+    
+      
+      
+    </div>
+
+
+   <div class="actions">
+    <%= f.submit %>
+   </div>
+    <% end %>
+</div>

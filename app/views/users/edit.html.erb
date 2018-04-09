@@ -1,0 +1,48 @@
+<div class="contents row">
+<h2>ユーザー情報を変更する</h2>
+<!--以下はdevise/registration/newのコピペ-->
+
+<%= form_for current_user do |f| %>
+ 
+
+  <div class="field">
+    <%= f.label :nickname %> <em> (6 characters maximum)</em><br />
+    <%= f.text_field :nickname, autofocus: true, maxlength: "8" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :introduction %><br />
+    <%= f.text_field :introduction, autocomplete: "off" %>
+  </div>
+  
+   <h2>プロフィール画像</h2>
+  <div class="field">
+    <%= f.file_field :avatar, placeholder: "画像アップロード" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録情報を変更する" %>
+  </div>
+<% end %>
+
+</div>
+
+<%# render "devise/shared/links" %>

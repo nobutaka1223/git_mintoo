@@ -1,0 +1,32 @@
+ <!--<div class="content_post" style="background-image": url(<);>-->
+    
+    <div class="render_post">
+    
+    
+    <span id="post_title">タイトル:<%= post.title%></span>
+    <br>
+    
+    <span>投稿者:</span><%= post.user.nickname  %>
+    <br>
+    
+    <%= image_tag(post.image) %>
+    <%= post.image %>
+    <br>
+    
+    <%= post.content%>
+    <br>
+    <br>
+    
+    <% if user_signed_in? && post.user_id == current_user.id %>
+    
+      <%= link_to '投稿を削除する', "/posts/#{post.id}", method: :delete %>
+    <% end %>
+    
+    
+    <%= link_to '投稿の詳細！', "/posts/#{post.id}", method: :get %>
+    
+       <%= render partial: "like", locals: { post: post } %>
+    
+    </div>
+    
+    

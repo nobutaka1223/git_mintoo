@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
 </head>
 
 <!--ボディ本文-->
@@ -15,24 +17,30 @@
   
   <header class="header">
     <div class="header__bar row">
-      <h1 class="grid-6"><a href="/">みんなのツールボックス</a></h1>
+      <h1 class="grid-6" align="center"><a href="/">みんなのツールボックス</a></h1>
       
       <!--ユーザーがサインインしてる場合-->
       
       <% if user_signed_in? %>
       <div class="user_nav grid-6">
-        <span><%= current_user.nickname %>
-         <ul class="user__info">
+        <span>
+         <ul class="user__info" style="text-align: right; list-style:none;">
+           <li>
+             <%= current_user.nickname %>
+           </li>
            <li>
              <a href="/users/<%= current_user.id %>">マイページ</a>
+           </li>
+           <li>
              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+           </li>
            
-             
+           <li>   <a class="post" href="/posts/new">投稿する！</a>
            </li>
            
          </ul>
         </span>
-            <a class="post" href="/posts/new">投稿する！</a>
+           
       </div>
       
       <!--ユーザーがサインインしていない場合-->
@@ -50,10 +58,14 @@
   
   <!--メニュー左端-->
   <div id="menu">
+    
+    <h2>カテゴリー</h2>
     <ul id="menu_body">
       
-      <%  $tools.each do |f| %>
-      <li ><a href=/posts/<%= f.id%>> <%= f.name%> (<%=f.posts.count %>) </a></li>
+      <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
+      <%  $tools.each do |t| %>
+      <li ><%= link_to"#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </li>
+     
       <% end%>
       
       
@@ -68,18 +80,24 @@
 
 <!--コンテンツ中央-->
 
-  <div id="content clearfix">
+  <div id="index">
     
+    <%= yield %>
     
   </div>
   
-<%= yield %>
+
 
   <footer>
     <p>
       Copyright noby 2018.
     </p>
   </footer>
+
+
+<!--JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
 </html>
