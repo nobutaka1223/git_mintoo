@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319080720) do
+ActiveRecord::Schema.define(version: 20180606083600) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 20180319080720) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "imagetexts", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.text     "content",    limit: 65535
+    t.string   "image",      limit: 255
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "imagetexts", ["post_id"], name: "index_imagetexts_on_post_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -32,11 +43,9 @@ ActiveRecord::Schema.define(version: 20180319080720) do
     t.integer  "user_id",     limit: 4
     t.integer  "tool_id",     limit: 4
     t.string   "title",       limit: 255
-    t.text     "content",     limit: 65535
-    t.string   "image",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "likes_count", limit: 4
+    t.integer  "likes_count", limit: 4,   default: 0
   end
 
   add_index "posts", ["tool_id"], name: "fk_rails_2b46186b11", using: :btree
@@ -59,10 +68,10 @@ ActiveRecord::Schema.define(version: 20180319080720) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.text     "introduction",           limit: 65535
+    t.string   "nickname",               limit: 255
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.string   "nickname",               limit: 255
-    t.text     "introduction",           limit: 65535
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
@@ -72,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180319080720) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "imagetexts", "posts"
   add_foreign_key "posts", "tools"
   add_foreign_key "posts", "users"
 end

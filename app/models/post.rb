@@ -4,6 +4,13 @@ class Post < ActiveRecord::Base
     
     has_many :comments
     has_many :likes
+    has_many :imagetexts
+    accepts_nested_attributes_for :imagetexts, reject_if: proc {|attributes| attributes['image'].blank?}
+    
+    
+    validates :title,  presence: true
+    validates :tool_id,       presence: true
+    
     
     
     def like_user(user_id)
@@ -12,6 +19,6 @@ class Post < ActiveRecord::Base
     #テンプレートではpost.like_userとしている。この時postにPostモデルのレコードが入っていなければならず、そのPostidとuseridでlikeモデルのインスタンスを返す。
     #また、メソッドはwhereでなくfind byでよい。
     
-    mount_uploader :image, ImageUploader
+    
 
 end

@@ -3,25 +3,28 @@
     <% if post.like_user(current_user.id) %>
  
 
-        <!--rake routesでpost_like_pathを見る限りpost_idとlike_idを渡さなければいけない。post.like_userはlikeモデルのインスタンスを返し、：のキーを付ける必要ない-->
-        <%= button_to post_like_path(post.like_user(current_user.id), post_id: post.id), method: :delete,id: "like-buttons",class: "like-button", remote: true do %>  
+        <!--rake routesでpost_like_pathを見る限りpost_idとlike_idを渡さなければいけない。
+        post.like_userはlikeモデルのインスタンスを返し、：のキーを付ける必要ない-->
+        <%= button_to post_like_path(post.like_user(current_user.id), post_id: post.id), 
+        method: :delete,id: "like-buttons",class: "like-button_already", remote: true do %>  
         
             
     <% end %>
     <% else %>
  
       <!--button＿toメソッドはデフォルトでpostメソッドhtmlを行う-->
-        <%= button_to post_likes_path(post), id: "like-buttons",class: "like-button", remote: true do %>
+        <%= button_to post_likes_path(post), id: "like-buttons",class: "like-button_yet", remote: true do %>
           
       
     <% end %>
     
     
 <% end %>
-  <%= post.likes_count %>  
+  <p><%= post.likes_count %>いいね！</p>
+ 
 <% else %>
-  <%= image_tag '/uploads/iineicon.png', :size =>'50x50' %>
-    <%= post.likes_count %>  
+  <%= image_tag '/uploads/tmp/iineicon.png', :size =>'50x50' %>
+  <p><%= post.likes_count %>いいね！</p>   
      
     
 <% end %>

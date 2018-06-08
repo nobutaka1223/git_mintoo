@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   
   resources :tools
+  get 'tools/:id/ranking' => 'tools#show_ranking'   #カテゴリー別のランキング
   
   resources :comments   #commentsテーブルに関するルーティング
   

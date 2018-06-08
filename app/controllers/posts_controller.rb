@@ -2,7 +2,7 @@ class PostsController < ApplicationController
       #before_action :authenticate_user!
     
     def index
-        @posts = Post.includes(:user).order("created_at DESC").page(params[:page]).per(5)
+        @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
     end
 
 
@@ -10,13 +10,15 @@ class PostsController < ApplicationController
         redirect_to action: :index  unless user_signed_in?
         
         @post = Post.new
+        @post.imagetexts.build
     end
 
 
     def create
-        
-        # Post.create(post_params)
+        #Post.create(post_params)
         current_user.posts.create(post_params)
+   
+        
         redirect_to action: :index
     end
 
@@ -45,9 +47,13 @@ class PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:title, :image, :content, :tool_id)
+        params.require(:post).permit(
+            :user_id,
+            :title, 
+            :tool_id, 
+            imagetexts_attributes:[:image, :content, :status])
     end
-    
+
     
     def move_to_index
         redirect_to action: unless user_signed_in?

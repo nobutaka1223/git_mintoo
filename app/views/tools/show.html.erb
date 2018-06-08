@@ -1,20 +1,20 @@
 <div class="contents row" >
     <!--bootstrapでのプルダウンリンク-->
     <div class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
-  </a>
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        投稿を並べ替え
+      </a>
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/tools/<%= params[:id] %>">投稿が新しい順</a>
+        <a class="dropdown-item" href="/tools/<%= params[:id] %>/ranking">いいね！ランキング順</a>
+      </div>
 </div>
 
-  <% @posts.each do |post| %>
-     <%= render partial: "posts/posts", locals: { post: post } %>
-  <% end %>
+
+     <%= render partial: "posts/posts" %>
+ 
+
   </div>
   
   

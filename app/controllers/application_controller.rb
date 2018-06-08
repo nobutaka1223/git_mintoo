@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :introductin, :avatar])
+    devise_parameter_sanitizer.permit(:edit, keys: [:nickname, :introductin, :avatar])
   end
   
   $tools = Tool.all

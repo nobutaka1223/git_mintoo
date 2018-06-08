@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
 
 </head>
 
@@ -16,13 +16,19 @@
   <!--ヘッダー-->
   
   <header class="header">
-    <div class="header__bar row">
+    <div class="header__bar">
       <h1 class="grid-6" align="center"><a href="/">みんなのツールボックス</a></h1>
       
       <!--ユーザーがサインインしてる場合-->
       
       <% if user_signed_in? %>
-      <div class="user_nav grid-6">
+      
+      <!--ユーザーアバターの表示-->
+      <div class="user_image"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
+      
+      <h3 style="text-align: right;"><%= current_user.nickname %><span >さん</span></h3>
+      
+      <div class="user_nav">
         <span>
          <ul class="user__info" style="text-align: right; list-style:none;">
            <li>
@@ -36,6 +42,9 @@
            </li>
            
            <li>   <a class="post" href="/posts/new">投稿する！</a>
+           </li>
+           
+           <li>   <a class="tool" href="/tools/new">カテゴリーをつくる</a>
            </li>
            
          </ul>
@@ -56,40 +65,41 @@
     </div>
   </header>
   
-  <!--メニュー左端-->
-  <div id="menu">
-    
-    <h2>カテゴリー</h2>
-    <ul id="menu_body">
-      
-      <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
-      <%  $tools.each do |t| %>
-      <li ><%= link_to"#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </li>
-     
-      <% end%>
-      
-      
-      
- 
-      
-      
-    </ul>
-    
-  </div>
-
-
-<!--コンテンツ中央-->
-
-  <div id="index">
-    
-    <%= yield %>
-    
-  </div>
+  <div id="oyabody clearfix">
   
+    <!--メニュー左端-->
+    <div id="menu">
+      
+      <h2>カテゴリー</h2>
+      <ul id="menu_body">
+        
+        <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
+        <%  $tools.each do |t| %>
+        <li ><%= link_to"#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </li>
+       
+        <% end%>
+        
+        
+        
+      </ul>
+      
+    </div>
 
+
+    <!--コンテンツ中央-->
+
+    <div id="index">
+        
+        <%= yield %>
+        
+    
+      
+    </div>
+    
+  </div>
 
   <footer>
-    <p>
+    <p style="text-align:center">
       Copyright noby 2018.
     </p>
   </footer>

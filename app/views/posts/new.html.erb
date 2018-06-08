@@ -1,35 +1,48 @@
 <div class="content_row">
-  <p>みんなのツールボックスに投稿しよう</p>
+  <h3>みんなのツールボックスに投稿しよう</h3>
       <br>
   
   <div class="container">
-  <%= form_for @post do |f| %>
-    <div class="field">
+    <%= form_for @post do |f| %>
+      <div class="field">
+    
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title,:size=>"50" %>
+      <br>
       
       
+        <%= f.label :tool, "カテゴリ"%>
+        <%= f.collection_select :tool_id, Tool.all, :id, :name%>
+      <br>
+      <br>
+      
+    <% junban = ["ichiban", "niban", "sanban", "yoban", "goban", "rokuban"] %>
+    <% i = 0  %> 
+    <% while i < 6  %> 
+      <div id="post_form">
+      <!--最初ブロックの引数にもjunbanを入れていたが、消したらerrorがなくなった-->
+      <%= f.fields_for :imagetexts do |imagetexts_form| %>
+        <%= imagetexts_form.label :image, "画像その#{i+1}" %>
+        <%= imagetexts_form.file_field :image %><br />
+        <%= imagetexts_form.label :content, "本文その#{i+1}" %><br>
+        <%= imagetexts_form.text_area :content,:size=>"100",:col=>"40" ,:row=>"20" %><br />
+        <%= imagetexts_form.hidden_field :status, :value => junban[i] %>
+        <% i = i + 1   %>
+        <br>
+     
+    <% end %>
+    
+       </div>
         
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title%>
-        
-        
-      <%= f.label :image %>
-      <%= f.file_field :image %>
-      
-      <%= f.label :content, "本文"%>
-      <%= f.text_field :content%>
-      
-      <%= f.label :tool, "カテゴリ"%>
-      <%= f.collection_select :tool_id, Tool.all, :id, :name%>
       
     
-      
-      
-    </div>
-
-
-   <div class="actions">
-    <%= f.submit %>
-   </div>
     <% end %>
+
+
+     <div class="actions">
+      <%= f.submit %>
+     </div>
+      <% end %>
+    </div>
   </div>
 </div>

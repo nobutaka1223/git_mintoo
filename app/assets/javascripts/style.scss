@@ -134,7 +134,7 @@ header.header {
     h1.grid-6 {
       font-size: 20px;
       line-height: 41px;
-      float: left;
+
       a {
         display: block;
 
@@ -365,7 +365,7 @@ form {
 .like-button{
       width: 100px;
       height: 100px;
-      background: url("/uploads/iineicon.png") left top no-repeat;
+      background: url("/uploads/tmp/iineicon.png") left top no-repeat;
 }
 
 .container {
@@ -396,3 +396,12 @@ footer {
     text-align: center;
   }
 }
+
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
