@@ -41,6 +41,8 @@ header.header {
     
     div.header__bar {
       
+        background-image: url("/images/top (1).jpg");
+      
           &:after {
             content: " ";
             display: block;
@@ -166,7 +168,7 @@ header.header {
 
 .clearfix:after {
   clear : both;
-  content: ".";
+  content: "";
   display: block;
   
 }
@@ -208,8 +210,23 @@ textarea{
 }
 
 
+.comments{
+  
+}
+
+#comment{ 
+  // clear: both;
+  
+  
+}
 
 footer {
   clear: both;
   
+}
+
+#test{
+  height: 1000px;
+  width: 1200px;
+  background-image: url("images/topimages/test.jpg");
 }

@@ -5,18 +5,22 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 
 </head>
 
 <!--ボディ本文-->
 
 <body>
-  
+
+
   <!--ヘッダー-->
   
   <header class="header">
     <div class="header__bar">
+      
+      <%= image_tag '', class:'random', alt:'random'  %>
+      
       <h1 class="grid-6" align="center"><a href="/">みんなのツールボックス</a></h1>
       
       <!--ユーザーがサインインしてる場合-->
@@ -96,8 +100,6 @@
       
     </div>
     
-  </div>
-
   <footer>
     <p style="text-align:center">
       Copyright noby 2018.
@@ -106,8 +108,12 @@
 
 
 <!--JS -->
+<!--上のlink bootstrapと3つ併せてCDNらしい-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
 
 </body>
 </html>

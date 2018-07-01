@@ -1,0 +1,24 @@
+
+<!--苦節の末、image tagのオプションの形は下で良かったらしい。-->
+<!--image_tag内のtargetキーでどの画像を開くか指定しているらしい。そしてcontent_tag内のidと一致させ指定している。-->
+<!--なぜcontent_tagをｓ仕様ｓているかは、divタグの中で"#{modalname}"が式展開できなかったかららしい。-->
+
+
+<% modalname = 'modal' +  "#{imagetexts.id}".to_s %>
+<% modalid = '#' + "#{modalname}" %>
+<%= image_tag (imagetexts.image), :size => "800×1000" , :class => "img-responsive thumbnail aligncenter size-full wp-image-425", 
+    data: { toggle: "modal", target: "#{modalid}" }, :style =>"cursor:pointer"  %>
+
+<%= content_tag(:div, :class => 'modal fade', :id => "#{modalname}", :size => "1000×800" ) do %>
+    <div class="modal-dialog modal-lg modal-middle">
+        <div class="modal-body">
+            <%= image_tag (imagetexts.image), :size => "1000×800" , :class => "img-responsive thumbnail aligncenter size-full wp-image-425"  %>
+        </div>
+        
+        <div class="modal-img_footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+<% end %>
+
+

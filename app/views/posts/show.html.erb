@@ -51,10 +51,13 @@
       <h4>＜コメント一覧＞</h4>
       <% if @comments %>
         <% @comments.each do |comment| %>
+        <div class="comment clearfix">
         <p>
+          <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
           <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
           <%= comment.text %>
         </p>
+        </div>
         <% end %>
       <% end %>
     </div>

@@ -14,7 +14,7 @@
     <br>
     
     <span>
-      <div class="poster_image"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
+      <div class="poster_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
       <p>投稿者:<%= post.user.nickname  %></p>
     </span>
     <br>
@@ -23,8 +23,8 @@
     <!--コントローラーでuserとimagetextsをincludeしたら表示できた。eachの書き方とインスタンス変数post．image textsの書き方もこれでいいらしい-->
     <% post.imagetexts.each do |imagetexts|%>
     
-    <%= image_tag(imagetexts.image) %>
-
+     <%= render partial: "modal", locals: { imagetexts: imagetexts} %> 
+     
     <br>
     
     <%= simple_format(imagetexts.content)%>
@@ -32,6 +32,12 @@
     <br>
     
     <% end %>
+    
+    
+    <% if post.youtube %>
+    <%= youtube(post) %>
+    <% end %> 
+     
     
     <%= link_to '投稿の詳細！', "/posts/#{post.id}", method: :get %>
     

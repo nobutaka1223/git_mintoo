@@ -1,18 +1,20 @@
 <div class="contents row">
-    <div class="user_image"><%= image_tag current_user.avatar %></div>
-    <p><%= @nickname %>さんの自己紹介</p>
-    <p><%= @introduction %></p>
+    <div class="user_image"><%= image_tag @user.avatar %></div>
+    <p><%= @user.nickname %>さんの自己紹介</p>
+    <p><%= @user.introduction %></p>
     
     <% if current_user.id == @user.id %>
     <%=link_to "ユーザー登録情報を変更する",edit_user_path, method: :get %>
     <% end %>
     
-    <p><%= @nickname %>さんの投稿一覧</p>
-    <% @posts.each do |post| %>
-        <%= render partial: "posts/posts", locals: { post: post } %>
-    <% end %> 
-    
-    
-    
-    
+    <p><%= @user.nickname %>さんの投稿一覧</p>
+   
+       <%= render partial: "posts/posts" %>
+       
+       
+     
+       
+       
+       
+       
 </div>

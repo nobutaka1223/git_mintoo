@@ -19,12 +19,12 @@
     <% end %>
     
     
-<% end %>
-  <p><%= post.likes_count %>いいね！</p>
+    <% end %>
+  <p><%= post.likes_count %>いいね！</p> <p>  コメント数：<%= post.comments_count %></p>
  
 <% else %>
   <%= image_tag '/uploads/tmp/iineicon.png', :size =>'50x50' %>
-  <p><%= post.likes_count %>いいね！</p>   
+  <p><%= post.likes_count %>いいね！</p> <p>  コメント数：<%= post.comments_count %></p>  
      
     
 <% end %>

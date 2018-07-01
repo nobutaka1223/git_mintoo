@@ -29,14 +29,21 @@
         <%= imagetexts_form.hidden_field :status, :value => junban[i] %>
         <% i = i + 1   %>
         <br>
+        <br>
+        
+     
      
     <% end %>
     
-       </div>
-        
       
-    
+       </div>
+       
+
+          
     <% end %>
+      <%= f.label :youtube, "Youtube動画埋め込み"%>
+      <%= f.text_field :youtube,:size=>"70" %>
+        <br>
 
 
      <div class="actions">

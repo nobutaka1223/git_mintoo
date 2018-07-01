@@ -2,9 +2,8 @@ class UsersController < ApplicationController
     
     def show 
         @user = User.find(params[:id])
-        @nickname = @user.nickname
-        @introduction = @user.introduction
-        @posts = @user.posts.page(params[:page]).per(5).order("created_at DESC")
+        @posts = @user.posts.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
+      
     end 
     
     

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     
     def index
         @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
+      
     end
 
 
@@ -51,7 +52,9 @@ class PostsController < ApplicationController
             :user_id,
             :title, 
             :tool_id, 
+            :youtube,
             imagetexts_attributes:[:image, :content, :status])
+            
     end
 
     
