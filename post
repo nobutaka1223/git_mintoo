@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ubuntu/workspace/mintoo/app/views/posts/_posts.html.erb @ line 32 ActionView::CompiledTemplates#_app_views_posts__posts_html_erb___1011454173463943909_37063740:
+
+    [1;34m27[0m:     
+    [1;34m28[0m:      <% end %>
+    [1;34m29[0m:      
+    [1;34m30[0m:     <br>
+    [1;34m31[0m:     
+ => [1;34m32[0m:     <% binding.pry %>
+    [1;34m33[0m:     <%= post.imagetexts(status:0)[0].content[0,5] %>
+    [1;34m34[0m:     
+    [1;34m35[0m:     <br>
+    [1;34m36[0m:     <br>
+    [1;34m37[0m:     
+

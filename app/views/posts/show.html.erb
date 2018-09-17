@@ -2,28 +2,33 @@
     
  
   
-    <p>投稿日時：<%= @post.created_at%></p>
+    <div id="post_head">
+      <p>投稿日時：<%= @post.created_at%></p>
+      
+      <h3>タイトル:<%= @post.title%></h3>
+      <br>
+      
+      
+      <span>
+        <div class="poster_image"><%= image_tag @post.user.avatar ,:class => "your_icon_image" %></div>
+        <p>投稿者:<%= @post.user.nickname  %></p>
+      </span>
     
-    <h3>タイトル:<%= @post.title%></h3>
-    <br>
+    </div>
     
-    <span>
-      <div class="poster_image"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
-      <p>投稿者:<%= @post.user.nickname  %></p>
-    </span>
-    <br>
-    <br>
-    
+        <br><br>
+        
     <!--コントローラーでuserとimagetextsをincludeしたら表示できた。eachの書き方とインスタンス変数post．image textsの書き方もこれでいいらしい-->
     <% @post.imagetexts.each do |imagetexts|%>
     
-    <%= image_tag(imagetexts.image) %>
-
-    <br>
+   
+   
+      <%= render partial: "posts/modal", locals: { imagetexts: imagetexts} %>
     
-    <%= simple_format(imagetexts.content)%>
-    <br>
-    <br>
+    
+      <p><%= simple_format(imagetexts.content)%></p>
+      
+      <br>
     
     <% end %>
     
@@ -31,9 +36,16 @@
     
     <% if user_signed_in? && @post.user_id == current_user.id %>
     
-      <%= link_to '投稿を削除する', "/posts/#{@post.id}", method: :delete %>
+      <br><br>
+    
+      <h3><%= link_to '投稿を削除する', "/posts/#{@post.id}", method: :delete %></h3>
 
     <% end %>
+    
+    
+    <%= render partial: "posts/like", locals: { @post : post } %>
+   
+  
     
   </div>
   
@@ -41,7 +53,7 @@
     <!-- ここからフォーム -->
     <% if current_user %>
       <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
-        <textarea name="text" placeholder="コメントする" rows="2" cols="30"></textarea>
+        <textarea name="text" placeholder="コメントする" rows="2" cols="100"></textarea>
         <input type="submit" value="SENT">
       <% end %>
     <% end %>
@@ -49,7 +61,9 @@
     <!--ここからコメント-->
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
+      
       <% if @comments %>
+      
         <% @comments.each do |comment| %>
         <div class="comment clearfix">
         <p>
@@ -59,7 +73,9 @@
         </p>
         </div>
         <% end %>
+        
       <% end %>
+      
     </div>
     
   </div>

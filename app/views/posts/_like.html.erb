@@ -9,22 +9,25 @@
         method: :delete,id: "like-buttons",class: "like-button_already", remote: true do %>  
         
             
-    <% end %>
+ 
     <% else %>
  
       <!--button＿toメソッドはデフォルトでpostメソッドhtmlを行う-->
         <%= button_to post_likes_path(post), id: "like-buttons",class: "like-button_yet", remote: true do %>
           
       
-    <% end %>
+
     
     
     <% end %>
-  <p><%= post.likes_count %>いいね！</p> <p>  コメント数：<%= post.comments_count %></p>
+    
+  <p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %></p>
  
 <% else %>
+
+
   <%= image_tag '/uploads/tmp/iineicon.png', :size =>'50x50' %>
-  <p><%= post.likes_count %>いいね！</p> <p>  コメント数：<%= post.comments_count %></p>  
+  <p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %></p>  
      
     
 <% end %>

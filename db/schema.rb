@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625163243) do
+ActiveRecord::Schema.define(version: 20180828055819) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -55,8 +55,9 @@ ActiveRecord::Schema.define(version: 20180625163243) do
 
   create_table "tools", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "category",   limit: 255, default: "その他"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,6 +79,8 @@ ActiveRecord::Schema.define(version: 20180625163243) do
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "uid",                    limit: 255
+    t.string   "provider",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

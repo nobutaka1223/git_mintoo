@@ -58,3 +58,11 @@ gem 'carrierwave'
 gem 'rmagick'
 
 gem 'paperclip'
+
+gem 'omniauth'
+
+gem 'omniauth-twitter'
+
+gem 'dotenv-rails'
+
+gem 'twitter'

@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   
   $tools = Tool.all
   
+  $likes = Like.all
+  
 
   
 end

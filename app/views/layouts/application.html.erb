@@ -19,54 +19,15 @@
   <header class="header">
     <div class="header__bar">
       
-      <%= image_tag '', class:'random', alt:'random'  %>
+      
       
       <h1 class="grid-6" align="center"><a href="/">みんなのツールボックス</a></h1>
       
       <!--ユーザーがサインインしてる場合-->
       
-      <% if user_signed_in? %>
-      
-      <!--ユーザーアバターの表示-->
-      <div class="user_image"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
-      
-      <h3 style="text-align: right;"><%= current_user.nickname %><span >さん</span></h3>
-      
-      <div class="user_nav">
-        <span>
-         <ul class="user__info" style="text-align: right; list-style:none;">
-           <li>
-             <%= current_user.nickname %>
-           </li>
-           <li>
-             <a href="/users/<%= current_user.id %>">マイページ</a>
-           </li>
-           <li>
-             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-           </li>
-           
-           <li>   <a class="post" href="/posts/new">投稿する！</a>
-           </li>
-           
-           <li>   <a class="tool" href="/tools/new">カテゴリーをつくる</a>
-           </li>
-           
-         </ul>
-        </span>
-           
+     
+        
       </div>
-      
-      <!--ユーザーがサインインしていない場合-->
-      
-      <% else %>
-      <div class="user_nav grid-6">
-        <%= link_to "ログイン", new_user_session_path, class:  'post' %>
-        <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
-      </div>
-      
-      <% end %>
-      
-    </div>
   </header>
   
   <div id="oyabody clearfix">
@@ -75,19 +36,42 @@
     <div id="menu">
       
       <h2>カテゴリー</h2>
-      <ul id="menu_body">
+      <div id="menu_body">
         
-        <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
-        <%  $tools.each do |t| %>
-        <li ><%= link_to"#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </li>
-       
-        <% end%>
+        <div id="container"></div>
         
-        
-        
-      </ul>
+          <div class="treemenu">
+          <% kategori = ["その他", "電験三種"] %>
+          <% i = 0 %>
+          <% while i< kategori.length do %>
+          
+         
+          <p class="lv1btn"><%= kategori[i] %>(<%= $tools.where(category: kategori[i]).count %>) </p>
+          <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
+          
+          <div class="lv1body">
+          <%  $tools.where(category: kategori[i]) .each do |t| %>
+      
+            <p class="lv2btn"><%= link_to"#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+            
+          <% end %>
+          
+          <% i = i + 1 %>
+          
+          </div>
+          
+          <% end %>
+          </div>
+      </div>
       
     </div>
+</div>
+
+      
+  
+
+
+
 
 
     <!--コンテンツ中央-->
@@ -100,7 +84,71 @@
       
     </div>
     
+    
+     <!--ユーザー情報の表示-->
+    
+    
+    <div id="user">
+    
+     <% if user_signed_in? %>
+      
+      <!--ユーザーアバターの表示-->
+        <div class="user_image"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
+        
+        <h5 style="text-align: center;"><%= current_user.nickname %><span >さん</span></h5>
+        
+        <h5 style="text-align: center;"><span >投稿記事数：</span><%= current_user.posts.count %></h5>
+        
+        <h5 style="text-align: center;"><span >もらったいいね！の数：</span><%= $likes.where(post_id:current_user.posts.ids).count %></h5>
+        
+        
+        
+          <div class="user_nav">
+            <span>
+             <ul  style="text-align: right; list-style:none;">
+               <li>
+                 <%= current_user.nickname %>
+               </li>
+               <li>
+                 <a href="/users/<%= current_user.id %>">マイページ</a>
+               </li>
+               <li>
+                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+               </li>
+               
+               <li>   <a class="post" href="/posts/new">投稿する！</a>
+               </li>
+               
+               <li>   <a class="tool" href="/tools/new">カテゴリーをつくる</a>
+               </li>
+               
+             </ul>
+            </span>
+            
+   
+               
+          </div>
+          
+         
+        
+        <!--ユーザーがサインインしていない場合-->
+        
+        <% else %>
+            <div class="user_nav grid-6">
+              <ul>
+                <li><%= link_to "ログイン", new_user_session_path, class:  'post' %></li>
+                <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
+                <li><%= link_to "twitterアカウントでログイン", user_twitter_omniauth_authorize_path, class: 'post' %></li>
+              </ul>
+            </div>
+        
+        <% end %>
+    
+    </div>
+    
   <footer>
+      <br><br><br><br>
+      
     <p style="text-align:center">
       Copyright noby 2018.
     </p>
@@ -111,7 +159,6 @@
 <!--上のlink bootstrapと3つ併せてCDNらしい-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 
 
 

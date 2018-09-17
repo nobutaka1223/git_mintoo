@@ -1,22 +1,24 @@
-window.onload = function(){
+$(window).on('load', function(){
   
  
   // ];
   var images = [
-  ["/images/top (1).jpg", 'これは1枚目の画像'],
-  ["/images/top (2).jpg", 'これは2枚目の画像'],
-  ["/images/top (3).jpg", 'これは3枚目の画像'],
-  ["/images/top (4).jpg", 'これは4枚目の画像'],
-  ["/images/top (5).jpg", 'これは5枚目の画像'],
-  ["/images/top (6).jpg", 'これは6枚目の画像'],
-  ["/images/top (7).jpg", 'これは7枚目の画像'],
-  ["/images/top (8).jpg", 'これは8枚目の画像'],
-  ["/images/top (9).jpg", 'これは9枚目の画像'],
-  ["/images/top (10).jpg", 'これは10枚目の画像'],
-  ["/images/top (11).jpg", 'これは11枚目の画像'],
-  ["/images/top (12).jpg", 'これは12枚目の画像'],
-  ["/images/top (13).jpg", 'これは13枚目の画像']
+  ['url("/images/top (1).jpg")'],
+  ['url("/images/top (2).jpg")'],
+  ['url("/images/top (3).jpg")'],
+  ['url("/images/top (4).jpg")'],
+  ['url("/images/top (5).jpg")'],
+  ['url("/images/top (6).jpg")'],
+  ['url("/images/top (7).jpg")'],
+  ['url("/images/top (8).jpg")'],
+  ['url("/images/top (9).jpg")'],
+  ['url("/images/top (10).jpg")'],
+  ['url("/images/top (11).jpg")'],
+  ['url("/images/top (12).jpg")'],
+  ['url("/images/top (13).jpg")']
 ];
-var randImg = images[Math.floor(Math.random() * images.length)];
-$('.header__bar').css({'background-image': 'url(randImg[0])' });
-}
+
+// ＄の配列を式展開させればうまくいった、上手くググるのがポイント`を忘れずに
+var randImg = images[Math.floor(Math.random() * images.length)]
+$('.header').css({'background-image':`${randImg[0]}`});
+});

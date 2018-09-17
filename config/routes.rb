@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   
   
   root     'posts#index'  #/からの投稿一覧
-  devise_for :users  #投稿一覧画面
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }  #投稿一覧画面
   resources :users, only: [:show, :edit, :update]
+  
   resources :posts do
     resources :likes, only:[:create, :destroy]
   end
+  
+  get '/ranking' => 'posts#ranking'   #総合ののランキング
+  
   
   resources :tools
   get 'tools/:id/ranking' => 'tools#show_ranking'   #カテゴリー別のランキング
@@ -14,15 +18,6 @@ Rails.application.routes.draw do
   resources :comments   #commentsテーブルに関するルーティング
   
   
-  
-  # get 'posts/new' => 'posts#new'    #投稿作成画面
-  # post 'posts' => 'posts#create'    #投稿作成動作
-  
-  # get 'posts/:id' => 'posts#show'   #投稿詳細画面
-  # delete 'posts/:id'  => 'posts#destroy' #投稿画面削除
-  
-  # get 'posts/:id/edit' => 'posts#edit'  #投稿内容編集
-  # patch 'post/:id' => 'posts#update'
   
   
   post 'posts/:post_id/comments' => 'comments#create' #ネストをしないでのコメントcreate

@@ -1,0 +1,22 @@
+
+[1mFrom:[0m /home/ubuntu/workspace/mintoo/app/controllers/posts_controller.rb @ line 29 PostsController#create:
+
+    [1;34m25[0m: [32mdef[0m [1;34mcreate[0m
+    [1;34m26[0m:     [1;34m#Post.create(post_params)[0m
+    [1;34m27[0m:     current_user.posts.create(post_params)
+    [1;34m28[0m: 
+ => [1;34m29[0m:     binding.pry
+    [1;34m30[0m:     
+    [1;34m31[0m:     [1;34m# if posts.save[0m
+    [1;34m32[0m:         
+    [1;34m33[0m:     [1;34m#     @client.update("#{posts.title}\r")[0m
+    [1;34m34[0m:     [1;34m#     redirect_to root_path[0m
+    [1;34m35[0m:     [1;34m# else[0m
+    [1;34m36[0m:         
+    [1;34m37[0m:     [1;34m#     render 'new'[0m
+    [1;34m38[0m:     [1;34m# end[0m
+    [1;34m39[0m:    
+    [1;34m40[0m:     
+    [1;34m41[0m:     [1;34m#redirect_to action: :index[0m
+    [1;34m42[0m: [32mend[0m
+

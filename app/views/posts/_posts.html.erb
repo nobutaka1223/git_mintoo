@@ -7,50 +7,67 @@
     <div class="render_post">
     
  
-  
-    <p>投稿日時：<%= post.created_at%></p>
     
-    <h3>タイトル:<%= post.title%></h3>
-    <br>
     
-    <span>
-      <div class="poster_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
-      <p>投稿者:<%= post.user.nickname  %></p>
-    </span>
-    <br>
-    <br>
+    <div class="post_head_foot">
+      <p>投稿日時：<%= post.created_at%></p>
+      
+      <h3>タイトル:<%= post.title%></h3>
+      <br>
+      
+      
+      <span>
+        <div class="poster_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
+        <p>投稿者:<%= post.user.nickname  %></p>
+      </span>
     
-    <!--コントローラーでuserとimagetextsをincludeしたら表示できた。eachの書き方とインスタンス変数post．image textsの書き方もこれでいいらしい-->
-    <% post.imagetexts.each do |imagetexts|%>
+    </div>
     
-     <%= render partial: "modal", locals: { imagetexts: imagetexts} %> 
+    <br><br><br><br><br>
+    
+    
+    
+    <!--取得したimagetextsのレコードはなぜか配列に入っているらしい。なので書き方は[0]を付けてあげないといけない-->
+    <% if post.imagetexts(status:0)[0] %>
+    
+    
+     <%=  image_tag post.imagetexts(status:0)[0].image, :size => "400x400", :class => "postsumbnail"%> 
      
-    <br>
-    
-    <%= simple_format(imagetexts.content)%>
-    <br>
-    <br>
-    
-    <% end %>
-    
-    
-    <% if post.youtube %>
-    <%= youtube(post) %>
-    <% end %> 
+     <% else %>
      
+     <%=  image_tag ("/images/gazounaiyo.png"), :size => "300x60" %> 
+     
+     
+     <% end %>
+     
+     <br><br>
     
-    <%= link_to '投稿の詳細！', "/posts/#{post.id}", method: :get %>
     
-    <% if user_signed_in? && post.user_id == current_user.id %>
+     <% if post.imagetexts(status:0)[0] %>
     
-      <%= link_to '投稿を削除する', "/posts/#{post.id}", method: :delete %>
+     
+     <p><%= post.imagetexts(status:0)[0].content[0,400] + "..." %></p>
+    
+     <% end %>
+   
+    
+    
 
-    <% end %>
+    <br><br><br>
+    
+    
+    
+     
+    <div class="post_head_foot">
+    <p><h3><%= link_to '投稿の詳細！', "/posts/#{post.id}", method: :get %></3></p>
     
 
     
+    <br><br>
     
-       <%= render partial: "like", locals: { post: post } %>
+    
+       <%= render partial: "posts/like", locals: { post: post } %>
+    </div>
     
     </div>
     

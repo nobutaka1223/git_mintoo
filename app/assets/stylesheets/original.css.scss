@@ -36,12 +36,14 @@ a {
 header.header {
     background-color: #fff;
     border-bottom: 1px solid $gray;
-
+    height: 300px;
+    background-image: url("/images/top (1).jpg");
+    background-size: cover;
     
     
     div.header__bar {
       
-        background-image: url("/images/top (1).jpg");
+        
       
           &:after {
             content: " ";
@@ -50,8 +52,9 @@ header.header {
           }
           
         h1.grid-6 {
-            font-size: 40px;
-            line-height: 41px;
+            font-size: 60px;
+            line-height: 60px;
+            font-family: KG Happy;
             
 
         a.post {
@@ -64,24 +67,32 @@ header.header {
         
 
     
-      div.user_nav {
-      height: 100px;
-      position: absolute;
-      right: 45px;
+   
+      }
+    
+}
+
+#user{
+      float: right;
+
+   div.user_nav {
+      // height: 100px;
+      // position: absolute;
+      // right: 45px;
         span {
           top: 5px;
           display: block;
           float: right;
-          margin-left: 30px;
+          margin-left: 60px;
           width: 100%;
-          height: 100%;
+          height: 200px;
           font-size: 1em;
           cursor: pointer;
           position: relative;
           &:after {
             content: '▼';
             font-size: 1.5em;
-            margin-left: -4px;
+            margin-left: 20px;
           }
           &:hover ul {
             color: $accent;
@@ -93,10 +104,10 @@ header.header {
         position: absolute;
         top: 46px;
         right: 0;
-        width: 150px;
-        border-left: 1px solid #d8d8d8;
-        border-right: 1px solid #d8d8d8;
-        box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+        width: 200px;
+        // border-left: 1px solid #d8d8d8;
+        // border-right: 1px solid #d8d8d8;
+        // box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
         &:hover{
           display: block;
         }
@@ -112,19 +123,18 @@ header.header {
         }
       }
       }
-      }
-    }
+   }
 }
 
  .user_image {
-          float: right;
-          width: 60px;
-          height: 60px;
+          // float: right;
+          width: 90px;
+          height: 90px;
           overflow: hidden;
-          border-radius: 60px;
+          border-radius: 90px;
           border-color: $mizuiro;
           border-width: 3px;
-          margin:5px;
+          margin:0 auto;
         }
 
  
@@ -136,7 +146,7 @@ header.header {
           border-radius: 60px;
           border-color: $mizuiro;
           border-width: 3px;
-
+          
         }
         
  .your_icon_image{
@@ -148,11 +158,74 @@ header.header {
             
         }
 
+
+
+
+
+// 左のカテゴリのCSS
+
 #menu {
   float: left;
   display: block;
     
 }
+
+
+#container {
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+.treemenu {
+  float: right;
+  width: 256px;
+  border-right: 1px solid #ccc;
+}
+/*階層1*/
+.treemenu .lv1btn {
+  cursor: pointer;
+  font-size:20px;
+  padding: 5px 10px;
+}
+.treemenu .lv1body {
+  display: none;
+  padding: 0 10px 5px 10px;
+}
+.treemenu .lv1body a {
+  line-height: 2.0;
+}
+/*階層2*/
+.treemenu .lv1body .lv2btn {
+  cursor: pointer;
+  padding: 5px 10px 5px 0;
+}
+.treemenu .lv1body .lv2body {
+  display: none;
+  padding: 0 10px 5px 10px;
+}
+.treemenu .lv1body .lv2body a {
+  line-height: 2.0;
+}
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #index {
@@ -175,6 +248,18 @@ header.header {
 
 
 
+
+.post_head_foot{
+  background-color: #f0fff0;
+  padding: 10px;
+  
+  :after{
+    clear:both;
+    content:"";
+    display:block;
+  }
+}
+
 .render_post {
     margin: 0px 50px 30px;
     padding: 30px;
@@ -182,7 +267,7 @@ header.header {
     border-color: $mizuiro;
     border-style: solid;
     border-radius: 10px;
-    
+    width: 800px;
     h3 {
       font-size: 20px;
     }
@@ -229,4 +314,6 @@ footer {
   height: 1000px;
   width: 1200px;
   background-image: url("images/topimages/test.jpg");
+  
+
 }
