@@ -38,18 +38,27 @@
     
       <br><br>
     
-      <h3><%= link_to '投稿を削除する', "/posts/#{@post.id}", method: :delete %></h3>
+      <h3><%= link_to '投稿を削除する', "/posts/#{@post.id}", method: :delete,  data: { confirm: '削除しますか？' } %></h3>
 
     <% end %>
     
     
-    <%= render partial: "posts/like", locals: { @post : post } %>
+    
+    
+    <%= render partial: "like" , locals: { post: @post }%>
    
+  
+  
+  
+  
   
     
   </div>
   
    <div class="container"> 
+   
+   
+   
     <!-- ここからフォーム -->
     <% if current_user %>
       <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
@@ -57,6 +66,10 @@
         <input type="submit" value="SENT">
       <% end %>
     <% end %>
+    
+    
+    
+    
     
     <!--ここからコメント-->
     <div class="comments">
@@ -67,7 +80,12 @@
         <% @comments.each do |comment| %>
         <div class="comment clearfix">
         <p>
-          <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+           <% if comment.user.avatar_file_name%>
+            <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+           <%else%>
+            <div class="poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+           <%end%>
+           
           <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
           <%= comment.text %>
         </p>

@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
       #before_action :authenticate_user!
     before_action :twitter_client, only: [:create]
+    before_action :login_required, only: [:tweet, :follow, :follow_check]
     
     def index
+    
         @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
         
      
@@ -98,12 +100,17 @@ class PostsController < ApplicationController
     
     
     def twitter_client
+        # Twitter::Client.new(
+        #     oauth_token: current_user.token,
+        #     oauth_token_secret: current_user.secret
+        # )
         @client = Twitter::REST::Client.new do |config|
+            
             config.consumer_key =  ENV['TWITTER_API_KEY']
             config.consumer_secret = ENV['TWITTER_API_SECRET']
             
-            config.access_token = ENV['ACCESS_TOKEN']
-            config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
+            config.access_token =  session[:oauth_token]
+            config.access_token_secret =  session[:oauth_token_secret]
             
       
         end   

@@ -17,17 +17,18 @@
   <!--ヘッダー-->
   
   <header class="header">
-    <div class="header__bar">
       
       
       
-      <h1 class="grid-6" align="center"><a href="/">みんなのツールボックス</a></h1>
       
+      <%= link_to root_path, target: "_blank", class: "title"  do %>
+        <%= image_tag "/images/mintoo_title_logo.png" %>
+      <% end %>
       <!--ユーザーがサインインしてる場合-->
       
      
         
-      </div>
+      
   </header>
   
   <div id="oyabody clearfix">
@@ -52,7 +53,7 @@
           <div class="lv1body">
           <%  $tools.where(category: kategori[i]) .each do |t| %>
       
-            <p class="lv2btn"><%= link_to"#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+            <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
             
           <% end %>
           
@@ -93,7 +94,13 @@
      <% if user_signed_in? %>
       
       <!--ユーザーアバターの表示-->
-        <div class="user_image"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
+        <% if current_user.avatar_file_name%>
+            <div class="user_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
+        <%else%>
+            <div class="user_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+        
+        <%end%>
+        
         
         <h5 style="text-align: center;"><%= current_user.nickname %><span >さん</span></h5>
         

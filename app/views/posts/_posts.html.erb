@@ -12,12 +12,18 @@
     <div class="post_head_foot">
       <p>投稿日時：<%= post.created_at%></p>
       
-      <h3>タイトル:<%= post.title%></h3>
+      <%= link_to "#{post.title}",  post_path(post.id) , id:"posts_title"%>
       <br>
       
-      
+    
       <span>
-        <div class="poster_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
+        <% if post.user.avatar_file_name%>
+            <div class="poster_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
+        <%else%>
+            <div class="poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+        
+        <%end%>
+        
         <p>投稿者:<%= post.user.nickname  %></p>
       </span>
     
@@ -59,7 +65,7 @@
     
      
     <div class="post_head_foot">
-    <p><h3><%= link_to '投稿の詳細！', "/posts/#{post.id}", method: :get %></3></p>
+    <p><h3><%= link_to '投稿の詳細はこちら', "/posts/#{post.id}", method: :get %></3></p>
     
 
     
