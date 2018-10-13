@@ -51,4 +51,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #画像の上限を100pxにする
   process :resize_to_limit => [700,700]
   
+  
+  
 end

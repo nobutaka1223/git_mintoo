@@ -49,8 +49,7 @@ header.header {
         }
 
     
-    div.header__bar {
-      
+    div.header__bar {git
         
       
           &:after {
@@ -80,13 +79,42 @@ header.header {
     
 }
 
-#user{
-      float: right;
 
-   div.user_nav {
+
+// レスポンシブなデザインにするよ
+
+
+// @media (min-width: 1351){
+//   #user{
+//     width: 100px;
+//     height: 150px;
+//     float: right;
+  
+//   }
+// }
+
+ #user{
+    height: 150px;
+    float: right;
+    margin: auto;
+    width: 200px;
+    // &:after{
+
+    // content:"";
+    // display:block;
+  
+  // }
+  // }
+}
+
+
+  #user div.user_nav {
       // height: 100px;
       // position: absolute;
       // right: 45px;
+      float:right;
+     
+      
         span {
           top: 5px;
           display: block;
@@ -97,8 +125,8 @@ header.header {
           font-size: 1em;
           cursor: pointer;
           position: relative;
-          &:after {
-            content: '▼';
+          p {
+            float:right;
             font-size: 1.5em;
             margin-left: 20px;
           }
@@ -132,17 +160,20 @@ header.header {
       }
       }
    }
-}
+
+
+
+
 
  .user_image {
-          // float: right;
+          margin-left:auto;
           width: 90px;
           height: 90px;
           overflow: hidden;
           border-radius: 90px;
           border-color: $mizuiro;
           border-width: 3px;
-          margin:0 auto;
+       
           
         }
         
@@ -183,6 +214,7 @@ header.header {
 #menu {
   float: left;
   display: block;
+  margin: 0  0;
     
 }
 
@@ -250,14 +282,22 @@ header.header {
 
 
 
-
-#index {
-  float: left;
-  
+@media (max-width: 1500px){
+#index{
+  float:left;
+}
 }
 
 
-#oyabody{
+@media (min-width: 1501px){
+  
+  #index{
+    float:left;
+  }
+}
+
+
+.oyabody{
   margin: 20px;
 
 }
@@ -273,7 +313,7 @@ header.header {
 
 
 .post_head_foot{
-  background-color: #f0fff0;
+  background-color: #D9E5FF;
   padding: 10px;
   border-radius: 15px;
   
@@ -291,7 +331,7 @@ header.header {
 
 .render_post {
     margin: 0px 50px 30px;
-    padding: 30px;
+    padding: 30px 30px 70px 30px ;
     border-width: 1;
     border-color: $mizuiro;
     border-style: solid;
@@ -309,17 +349,101 @@ header.header {
 
 
 
+
+
+
+
+
+
+// ユーザーページのユーザー情報について
+
+.contentsrow{
+ 
+ 
+ //ここから吹き出し
+   .fukidashi {
+ 	position: relative;
+	display: block;
+ 	margin: 0,auto;
+	padding: 7px 10px;
+	min-width: 120px;
+ 	max-width: 100%;
+ 	color: #555;
+	font-size: 16px;
+	background: #FFF;
+ 	border: solid 3px #555;
+ 	box-sizing: border-box;
+ 	border-radius: 10px;
+ 	
+}
+
+.fukidashi:before{
+	content: "";
+	position: absolute;
+	top: -24px;
+	left: 50%;
+ 	margin-left: -15px;
+	border: 12px solid transparent;
+	border-bottom: 12px solid #FFF;
+ 	z-index: 2;
+}
+
+.fukidashi:after{
+	content: "";
+	position: absolute;
+	top: -30px;
+	left: 50%;
+ 	margin-left: -17px;
+	border: 14px solid transparent;
+	border-bottom: 14px solid #555;
+ 	z-index: 1;
+}
+
+.fukidashi p {
+	margin: 0;
+	padding: 0;
+}
+
+//ここまで吹き出し
+}
+
+
+.mannnaka{
+  text-align:center;
+  line-height: 15px;
+  font-size: 20px;
+}
+
+
+
+// post#showページ
+
+.comment_container{
+  width: 900px;
+   margin: 0px 50px 30px;
+    padding: 30px;
+}
+
+
+
+
+
+
+
+
 .like-button_already{
+                 
       width: 55px;
       height: 55px;
-      background: url("/uploads/tmp/iineicon.png") left top no-repeat;
+      background: url("/images/iine_icon.jpeg") left top no-repeat;
 }
 
 
 .like-button_yet{
+     
       width: 55px;
       height: 55px;
-      background: url("/uploads/tmp/iineicon_notyet.png") left top no-repeat;
+      background: url("/images/iine_icon_notyet.jpeg") left top no-repeat;
 }
 
 
@@ -342,47 +466,3 @@ footer {
   clear: both;
   
 }
-
-#test{
-  height: 1000px;
-  width: 1200px;
-  background-image: url("images/topimages/test.jpg");
-  
-
-}
-
-
-
-
-// ユーザーページのユーザー情報について
-
-.contentsrow{
- 
-   p.fukidashi{
-     position: relative;
-	display: inline-block;
- 	margin: 1.5em 0;
-	padding: 7px 10px;
-	min-width: 120px;
- 	max-width: 100%;
- 	color: #555;
-	font-size: 16px;
-	background: #e0edff;
-	border-radius: 15px;
-   }
-  
-   p.fukidashi:before{
-	content: "";
-	position: absolute;
-	top: -30px;
-	left: 50%;
- 	margin-left: -15px;
-	border: 15px solid transparent;
-	border-bottom: 15px solid #e0edff;
-   
-     
-   } 
-}
-
-
-

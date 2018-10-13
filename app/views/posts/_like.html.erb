@@ -25,11 +25,20 @@
     
   <p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %></p>
  
+  <% post.comments .each do |comment| %>
+    <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+  <% end %>
+ 
 <% else %>
 
 
   <%= image_tag '/uploads/tmp/iineicon.png', :size =>'50x50' %>
   <p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %></p>  
-     
-    
+  
+
+  
+  <% post.comments .each do |comment| %>
+    <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+  <% end %>
+  
 <% end %>

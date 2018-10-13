@@ -22,16 +22,99 @@
       
       
       <%= link_to root_path, target: "_blank", class: "title"  do %>
-        <%= image_tag "/images/mintoo_title_logo.png" %>
+        <%= image_tag "/images/mintoo_title_logo2.png" %>
       <% end %>
       <!--ユーザーがサインインしてる場合-->
+      
       
      
         
       
   </header>
   
-  <div id="oyabody clearfix">
+  
+  
+  
+  
+  
+  <div id="oyabody ">
+    
+    
+    
+         <!--ユーザー情報の表示-->
+    
+    
+    <div id="user">
+      
+          <!--サインインしている場合-->
+         <% if user_signed_in? %>
+          
+          <!--ユーザーアバターの表示-->
+            <% if current_user.avatar_file_name%>
+                <div class="user_image clearfix"><%= image_tag current_user.avatar ,:class => "your_icon_image" %></div>
+            <%else%>
+                <div class="user_image clearfix"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+            
+            <%end%>
+            
+            
+            <h5 style="text-align: right;"><%= current_user.nickname %><span >さん</span></h5>
+            
+            <h5 style="text-align: right;"><span >投稿記事数：</span><%= current_user.posts.count %></h5>
+            
+            <h5 style="text-align: right;"><span >もらったいいね！の数：</span><%= $likes.where(post_id:current_user.posts.ids).count %></h5>
+            
+            
+            
+              <div class="user_nav">
+                <span>
+                  
+                 
+                <p>メニュー▼</p> 
+                 <ul  style="text-align: right; list-style:none;">
+                   <li>
+                     <%= current_user.nickname %>
+                   </li>
+                   <li>
+                     <a href="/users/<%= current_user.id %>">マイページ</a>
+                   </li>
+                   <li>
+                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                   </li>
+                   
+                   <li>   <a class="post" href="/posts/new">投稿する！</a>
+                   </li>
+                   
+                   <li>   <a class="tool" href="/tools/new">カテゴリーをつくる</a>
+                   </li>
+                   
+                 </ul>
+                </span>
+                
+       
+                   
+              </div>
+              
+             
+            
+            <!--ユーザーがサインインしていない場合-->
+            
+            <% else %>
+                <div class="user_nav grid-6">
+                  <ul>
+                    <li><%= link_to "ログイン", new_user_session_path, class:  'post' %></li>
+                    <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
+                    <li><%= link_to "twitterアカウントでログイン", user_twitter_omniauth_authorize_path, class: 'post' %></li>
+                  </ul>
+                </div>
+            
+            <% end %>
+        
+        </div>
+        
+        
+        
+    
   
     <!--メニュー左端-->
     <div id="menu">
@@ -71,10 +154,8 @@
       
   
 
-
-
-
-
+       
+        
     <!--コンテンツ中央-->
 
     <div id="index">
@@ -84,74 +165,18 @@
     
       
     </div>
+
+
+
+
     
     
-     <!--ユーザー情報の表示-->
+
+ 
     
     
-    <div id="user">
-    
-     <% if user_signed_in? %>
-      
-      <!--ユーザーアバターの表示-->
-        <% if current_user.avatar_file_name%>
-            <div class="user_image"><%= image_tag post.user.avatar ,:class => "your_icon_image" %></div>
-        <%else%>
-            <div class="user_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
-        
-        <%end%>
         
         
-        <h5 style="text-align: center;"><%= current_user.nickname %><span >さん</span></h5>
-        
-        <h5 style="text-align: center;"><span >投稿記事数：</span><%= current_user.posts.count %></h5>
-        
-        <h5 style="text-align: center;"><span >もらったいいね！の数：</span><%= $likes.where(post_id:current_user.posts.ids).count %></h5>
-        
-        
-        
-          <div class="user_nav">
-            <span>
-             <ul  style="text-align: right; list-style:none;">
-               <li>
-                 <%= current_user.nickname %>
-               </li>
-               <li>
-                 <a href="/users/<%= current_user.id %>">マイページ</a>
-               </li>
-               <li>
-                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-               </li>
-               
-               <li>   <a class="post" href="/posts/new">投稿する！</a>
-               </li>
-               
-               <li>   <a class="tool" href="/tools/new">カテゴリーをつくる</a>
-               </li>
-               
-             </ul>
-            </span>
-            
-   
-               
-          </div>
-          
-         
-        
-        <!--ユーザーがサインインしていない場合-->
-        
-        <% else %>
-            <div class="user_nav grid-6">
-              <ul>
-                <li><%= link_to "ログイン", new_user_session_path, class:  'post' %></li>
-                <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
-                <li><%= link_to "twitterアカウントでログイン", user_twitter_omniauth_authorize_path, class: 'post' %></li>
-              </ul>
-            </div>
-        
-        <% end %>
-    
-    </div>
     
   <footer>
       <br><br><br><br>

@@ -2,7 +2,7 @@
     
  
   
-    <div id="post_head">
+    <div class="post_head_foot">
       <p>投稿日時：<%= @post.created_at%></p>
       
       <h3>タイトル:<%= @post.title%></h3>
@@ -11,8 +11,8 @@
       
       <span>
         <div class="poster_image"><%= image_tag @post.user.avatar ,:class => "your_icon_image" %></div>
-        <p>投稿者:<%= @post.user.nickname  %></p>
-      </span>
+        <p>投稿者:<%= link_to "#{@post.user.nickname}", user_path(@post.user.id)  %></p>
+      </span>  
     
     </div>
     
@@ -55,7 +55,8 @@
     
   </div>
   
-   <div class="container"> 
+   <div class="comment_container
+   "> 
    
    
    

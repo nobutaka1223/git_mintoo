@@ -41,4 +41,9 @@ class User < ActiveRecord::Base
     "#{auth.uid}-#{auth.provider}@example.com"
   end
   
+  
+  #remembelableでtwitterのAPIも永続的なログインできるのか
+ 
+  
+  
 end

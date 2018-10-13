@@ -24,7 +24,7 @@
         
         <%end%>
         
-        <p>投稿者:<%= post.user.nickname  %></p>
+        <p>投稿者:<%= link_to "#{post.user.nickname}", user_path(post.user.id)  %></p>
       </span>
     
     </div>
@@ -68,7 +68,6 @@
     <p><h3><%= link_to '投稿の詳細はこちら', "/posts/#{post.id}", method: :get %></3></p>
     
 
-    
     <br><br>
     
     
