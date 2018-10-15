@@ -1,12 +1,11 @@
-  <div class="dropdown show">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <h3>投稿を並べ替える</h3>
-      </a>
-      
-     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="/>"><h3>投稿が新しい順</h3></a>
-        <a class="dropdown-item" href="/ranking"><h3>いいね！ランキング順</h3></a>
-      </div>
-      </div>
+    <ul class="nav">
+
+      <li><a href="#">投稿を並び替えする</a>
+        <ul>
+          <li><a href="/">投稿が新しい順</a></li>
+          <li><a href="/ranking">いいね！ランキング順</a></li>
+        </ul>
+      </li>
+    </ul>
       
    <%= render partial: "posts" %>

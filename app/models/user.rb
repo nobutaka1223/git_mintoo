@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
     unless user
       user = User.create(
+        nickname: auth.info.name,
         uid:        auth.uid,
         provider:   auth.provider,
         email:      User.dummy_email(auth),
@@ -43,7 +44,10 @@ class User < ActiveRecord::Base
   
   
   #remembelableでtwitterのAPIも永続的なログインできるのか
- 
+  
+  
+  
+
   
   
 end
