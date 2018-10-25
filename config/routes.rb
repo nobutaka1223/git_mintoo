@@ -1,23 +1,35 @@
 Rails.application.routes.draw do
   
   
+  
+  
   root     'posts#index'  #/からの投稿一覧
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }  #投稿一覧画面
+  
+  
+  #このget users/twitterはresouces:usersより手前に書かないとUsers/:idのidの部分にtwitterが入ってしまいエラーになる。結構時間かけた・・・
+  get 'users/twitter' => 'users#twitter'
+  
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    registrations: 'registrations'
+  }  #投稿一覧画面
+  
+  
+  
+  
   resources :users, only: [:show, :edit, :update]
   
   resources :posts do
     resources :likes, only:[:create, :destroy]
   end
+  resources :tools
+  resources :comments   #commentsテーブルに関するルーティング
+  
   
   get '/ranking' => 'posts#ranking'   #総合ののランキング
   
   
-  resources :tools
+  
   get 'tools/:id/ranking' => 'tools#show_ranking'   #カテゴリー別のランキング
-  
-  resources :comments   #commentsテーブルに関するルーティング
-  
-  
   
   
   post 'posts/:post_id/comments' => 'comments#create' #ネストをしないでのコメントcreate

@@ -11,27 +11,40 @@ class User < ActiveRecord::Base
                       styles: { medium: "300x300#", thumb: "100x100" }
   validates_attachment_content_type :avatar,
                                       content_type: ["image/jpg", "image/jpeg", "image/png"]
+                                      
+  
+ 
   
   
-  
-  def self.find_for_oauth(auth)
+  def self.find_for_oauth(auth,usersignedin,userself)
     
-    user = User.where(uid: auth.uid, provider: auth.provider).first
+    
+    user = User.where(accesstoken: auth.credentials.token, provider: auth.provider).first
 
-
-    unless user
-      user = User.create(
-        nickname: auth.info.name,
-        uid:        auth.uid,
-        provider:   auth.provider,
-        email:      User.dummy_email(auth),
-        password:   Devise.friendly_token[0,20],
-       
+    
+    
+    
+    if user
+    
+        return user
         
-        )
-    end
+    elsif user == nil && usersignedin == true  then
     
-    return user
+     
+ 
+          user = userself.update_attributes(
+            provider: auth.provider,
+            accesstoken: auth.credentials.token,
+            secrettoken: auth.credentials.secret
+            
+            )
+        
+        return user
+        
+    elsif user == nil && usersignedin == false  then
+      
+          
+    end
     
   end
   

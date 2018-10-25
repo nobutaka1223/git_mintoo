@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
     
+    
+    
+    def twitter
+        
+    end
+    
     def show 
         @user = User.find(params[:id])
         @posts = @user.posts.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
@@ -14,6 +20,8 @@ class UsersController < ApplicationController
     def update
         current_user.update(update_params)
     end
+    
+    
     
     private
     def update_params
