@@ -21,16 +21,27 @@
     <!--コントローラーでuserとimagetextsをincludeしたら表示できた。eachの書き方とインスタンス変数post．image textsの書き方もこれでいいらしい-->
     <% @post.imagetexts.each do |imagetexts|%>
     
-   
-   
-      <%= render partial: "posts/modal", locals: { imagetexts: imagetexts} %>
+      
+      
+      <%= simple_format(imagetexts.subtitle, :class => "subtitle")  if !imagetexts.subtitle.blank? %>
+    
+     
+      
+    
+      <%= render partial: "posts/modal", locals: { imagetexts: imagetexts}  if !imagetexts.image.blank?%>
     
     
-      <p><%= simple_format(imagetexts.content)%></p>
+    
+      <%= simple_format(imagetexts.content, :class => "content")  if !imagetexts.content.blank?%>
       
       <br>
     
     <% end %>
+    
+    <% if @post.youtube %>
+    <%= youtube(@post) %>
+    <% end %>
+    
     
  
     
@@ -40,14 +51,20 @@
     
       <h3><%= link_to '投稿を削除する', "/posts/#{@post.id}", method: :delete,  data: { confirm: '削除しますか？' } %></h3>
 
+      <br>
+    
+      <h3><%= link_to '投稿を編集する', "/posts/#{@post.id}/edit"  %></h3>
+
+
     <% end %>
     
     
     
-    
-    <%= render partial: "like" , locals: { post: @post }%>
-   
-  
+       <div id ="likes_button_<%= @post.id %>">  
+        
+         <%= render partial: "posts/like", locals: { post: @post } %>
+       
+       </div>
   
   
   
@@ -55,47 +72,19 @@
     
   </div>
   
-   <div class="comment_container
-   "> 
+   <div class="comment_container"> 
    
    
+    
    
-    <!-- ここからフォーム -->
-    <% if current_user %>
-      <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
-        <textarea name="text" placeholder="コメントする" rows="2" cols="100"></textarea>
-        <input type="submit" value="SENT">
-      <% end %>
-    <% end %>
-    
-    
-    
-    
-    
     <!--ここからコメント-->
-    <div class="comments">
-      <h4>＜コメント一覧＞</h4>
-      
-      <% if @comments %>
-      
-        <% @comments.each do |comment| %>
-        <div class="comment clearfix">
-        <p>
-           <% if comment.user.avatar_file_name%>
-            <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
-           <%else%>
-            <div class="poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
-           <%end%>
-           
-          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
-          <%= comment.text %>
-        </p>
-        </div>
-        <% end %>
-        
-      <% end %>
-      
-    </div>
+    
+    
+       <%= render partial: "posts/comments" %>
+    
+   
+    
+   
     
   </div>
 </div>

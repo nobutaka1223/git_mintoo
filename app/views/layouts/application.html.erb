@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </head>
 
@@ -23,8 +25,8 @@
       
       
       
-      <%= link_to root_path, target: "_blank", class: "title"  do %>
-        <%= image_tag "/images/mintoo_title_logo2.png" %>
+      <%= link_to root_path,  class: "title"  do %>
+        <%= image_tag "/images/mintoo_title_logo2.png" ,:class =>"title" %>
       <% end %>
       <!--ユーザーがサインインしてる場合-->
       
@@ -43,6 +45,11 @@
     
     
     
+
+   <!--ユーザー情報と最近のコメント-->
+   
+   <div id="user_recentcomment">
+       
          <!--ユーザー情報の表示-->
     
     
@@ -118,6 +125,57 @@
         </div>
         
         
+    
+
+
+    <!--最近コメントのあった投稿-->
+
+  <div id ="recent_comments">
+    
+    <span><h3>最近のコメント</h3></span>
+    
+    <% $comments .each do |comment| %>
+      <div class="recent_comment">
+         <h5><%= link_to "#{comment.post.title}",  post_path(comment.post.id) , id:"posts_title2"%></h5>
+       
+        <br>
+        
+          <% if comment.user.avatar_file_name %>
+            <div class="recent_comment_poster_image"><%= image_tag comment.user.avatar ,:class => "recent_comment_icon_image" %></div>
+           <%else%>
+            <div class="recent_comment_poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "recent_comment_anonimous_image" %></div>
+          <%end%>
+        
+        <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
+       
+       <br>
+       
+       <div class="introduction_and_recentcomment"> 
+         
+            <%= simple_format(comment.text[0..20],:class => "fukidashi") %>
+        
+       </div>
+         
+        
+     </div>   
+        
+          
+        
+        
+        
+     
+      
+    <% end %>
+    
+    
+    
+   </div>
+    
+    
+  </div>
+    
+    
+ 
         
     
   
@@ -134,8 +192,19 @@
           <% i = 0 %>
           <% while i< kategori.length do %>
           
-         
-          <p class="lv1btn"><%= kategori[i] %>(<%= $tools.where(category: kategori[i]).count %>) </p>
+          
+          <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
+          <p class="lv1btn"><%= kategori[i] %>
+            <% counts = 0 %>
+            <% $tools.where(category: kategori[i]) .each do |tool| %>
+              <% counts += tool.posts.count %>
+            <% end %>
+            (<%= counts %>) 
+          </p>
+          
+          
+          
+          
           <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
           
           <div class="lv1body">
@@ -154,7 +223,7 @@
       </div>
       
     </div>
-</div>
+
 
       
   
@@ -173,9 +242,8 @@
 
 
 
+</div>
 
-    
-    
 
  
     
@@ -183,20 +251,19 @@
         
         
     
-  <footer>
+  <footer >
       <br><br><br><br>
       
     <p style="text-align:center">
       Copyright noby 2018.
     </p>
+    
+ 
   </footer>
 
   
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-
 
 </body>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 
 </html>

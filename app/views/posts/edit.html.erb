@@ -1,32 +1,81 @@
+
 <div class="content_row">
-    <p>投稿内容を編集しよう</p>
+  <h3>過去の投稿を編集する</h3>
       <br>
-  <%= form_for @post,:url => {:action => :update} do |f| %>
-    <div class="field">
+  
+  <div class="container">
+    <%= form_for @post,url:{:action => :update}, html: {onSubmit:"return check()"} do |f| %>
+      <div class="field">
         
+        <%= f.label :title, "タイトル"  %>
+        <%= f.text_field :title,:size=>"50", :value => @post.title %>
+      <br>
       
+      
+        <%= f.label :tool, "カテゴリ"%>
+        <%= f.collection_select :tool_id, Tool.all, :id, :name%>
+      <br>
+      <br>
         
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title%>
-        
-        
-      <%= f.label :image %>
-      <%= f.file_field :image %>
+      <!--以下はメンターの井上さんが書いたコード-->
+      <!--to_aは配列にするメソッドらしい。インスタンスにも使えるのね-->
       
-      <%= f.label :content, "本文"%>
-      <%= f.text_field :content%>
+      <% imagetexts = @post.imagetexts.to_a %>
       
-      <%= f.label :tool, "カテゴリ"%>
-      <%= f.collection_select :tool_id, Tool.all, :id, :name%>
+      <!--こんな書き方もあるのか、ここでモデル.newするのか、しかも配列にして＋で足しているのか-->
+      <% imagetexts = imagetexts + ([Imagetext.new(post_id: @post.id) ] * (6 - imagetexts.count) ) if imagetexts.count < 6 %>
       
-    
+        <% imagetexts.each.with_index do |imagetext, index| %>
+       <div id="post_form">
+         <!--fields_forの引数？でattributesの:imagetextsを入れて、さらに引数でimagetextを入れたらeditが動いた。-->
+         <!--それまではparamsが全く、おかしくて生成されたhtmlを見たら各formのidとnameを下の様にしたらparamsが正常になったようだ。success！-->
+        <%= f.fields_for :imagetexts, imagetext do |imagetexts_form| %>
+          
+          
+          
+            <%= imagetexts_form.label :subtitle, "見出しその#{index+1}" %><br>
+            <%= imagetexts_form.text_field :subtitle,:size=>"80×1", :class => "subtitle_#{index}", :value => imagetext.subtitle,
+            :name => "post[imagetexts_attributes][#{index}][subtitle]", :id => "post_imagetexts_attributes_#{index}_subtitle"  %><br>
+            
+            <div class="preview<%= index%>">
+              <%= imagetexts_form.label :image, "画像その#{index+1}" %>
+              <%= imagetexts_form.file_field :image, :class => "image_#{index}",
+              :name => "post[imagetexts_attributes][#{index}][image]", :id => "post_imagetexts_attributes_#{index}_image" %><br>
+            </div>
+            
+            <div class="preview_display<%= index%>">
+              <%= image_tag imagetext.image.url %>
+            </div>
+            
+            <%= imagetexts_form.label :content, "本文その#{index+1}" %><br>
+            <%= imagetexts_form.text_area :content,:size=>"100",:col=>"40" ,:row=>"20",:class => "content_#{index}", :value => imagetext.content,
+             :name => "post[imagetexts_attributes][#{index}][content]", :id => "post_imagetexts_attributes_#{index}_content"%><br >
+            
+            <%= imagetexts_form.hidden_field :status, :value => index %>
+            
+            <%= imagetexts_form.hidden_field :id, :value => imagetext.id  %>
+            
+  
+            <br>
+            <br>
+      </div>
+       <% end %>
+       <% end %>
       
+      
+
+         
+       
+            <%= f.label :youtube, "Youtube動画埋め込み"%>
+            <%= f.text_field :youtube,:size=>"70" , :value => @post.youtube %>
+              <br>
+     
+              
+           <div class="actions">
+            <%= f.submit %>
+           </div>
+      <% end %>
       
     </div>
-
-
-   <div class="actions">
-    <%= f.submit %>
-   </div>
-    <% end %>
+  </div>
 </div>

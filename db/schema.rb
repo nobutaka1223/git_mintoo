@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181016122117) do
+ActiveRecord::Schema.define(version: 20181124004849) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20181016122117) do
     t.integer  "status",     limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "subtitle",   limit: 255
   end
 
   add_index "imagetexts", ["post_id"], name: "index_imagetexts_on_post_id", using: :btree

@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   
   $likes = Like.all
   
+  $comments = Comment.order(created_at: :desc).first(5)
+  
 
   
 end

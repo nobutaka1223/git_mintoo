@@ -16,12 +16,15 @@ class ToolsController < ApplicationController
     
 
     def show
-        @posts = Post.where(tool_id: params[:id])
+        @posts = Post.where(tool_id: params[:id]).page(params[:page]).per(5)
+        @tool = Tool.find_by(id: params[:id])
+       
        
     end
     
     def show_ranking
-        @posts = Post.where(tool_id: params[:id]).order("likes_count DESC")
+        @posts = Post.where(tool_id: params[:id]).order("likes_count DESC").page(params[:page]).per(5)
+        @tool = Tool.find_by(id: params[:id])
 
     end
     

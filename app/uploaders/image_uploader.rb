@@ -12,6 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  
+  def size_range
+    1..3.megabytes
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -49,7 +53,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   
   #画像の上限を100pxにする
-  process :resize_to_limit => [700,700]
+  process :resize_to_limit => [1000,1000]
   
   
   

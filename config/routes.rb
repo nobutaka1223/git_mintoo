@@ -25,12 +25,10 @@ Rails.application.routes.draw do
   resources :comments   #commentsテーブルに関するルーティング
   
   
-  get '/ranking' => 'posts#ranking'   #総合ののランキング
+  get '/ranking' => 'posts#ranking'   #総合のランキング
+  get 'tools/:id/show_ranking' => 'tools#show_ranking'   #カテゴリー別のランキング
   
-  
-  
-  get 'tools/:id/ranking' => 'tools#show_ranking'   #カテゴリー別のランキング
-  
+
   
   post 'posts/:post_id/comments' => 'comments#create' #ネストをしないでのコメントcreate
   

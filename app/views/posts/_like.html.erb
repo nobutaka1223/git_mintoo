@@ -2,7 +2,7 @@
   
     <% if post.like_user(current_user.id) %>
  
-
+        
         <!--rake routesでpost_like_pathを見る限りpost_idとlike_idを渡さなければいけない。
         post.like_userはlikeモデルのインスタンスを返し、：のキーを付ける必要ない-->
         <%= button_to post_like_path(post.like_user(current_user.id), post_id: post.id), 
@@ -20,20 +20,29 @@
     
     <% end %>
     <% end %>
+     
+    　<div class="twitter">
+        　<a href="//twitter.com/share" class="twitter-share-button" data-text="<%= post.title %>" data-url="https://mintoo-nobutaka0101.c9users.io/posts/<%= post.id %>" data-lang="ja">
+         Tweet
+         </a>
+    　</div>
     
   <br>  
+  
+  <!--コメントアイコン画像を表示-->
     
-  <p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %></p>
- 
+   
+  <%= render partial: "posts/comments_images", locals: { post: post}  %>
  
  
 <% else %>
 
+   <!--コメントアイコン画像を表示-->
 
-  <%= image_tag '/uploads/tmp/iineicon.png', :size =>'50x50' %>
-  <p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %></p>  
-  
-
+  <%= image_tag '/images/iine_icon.jpeg', :size =>'50x50' %>
+ 
+ 
+  <%= render partial: "posts/comments_images", locals: { post: post}  %>
   
 
   

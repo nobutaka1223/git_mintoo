@@ -1,0 +1,24 @@
+<p>いいね！数：<%= post.likes_count %></p> <p>  コメント数：<%= post.comments_count %><p>
+  
+  <br>
+  
+  <span><%= image_tag '/images/comments_people.png' %>
+
+        <% comments_images = [] %>
+    
+        <%  post.comments .each do |comment| comments_images  << comment.user.avatar end %>
+        
+        <%  if comments_images %>
+         
+          <%  comments_images = comments_images.uniq  %>
+          
+          <% comments_images .each do |comment_image| %>
+          
+            <!--comment＿imageのidは最初どうやったら取れるのかわからなかったけど、以下のようにやったら取れた-->
+            <% next if comment_image.instance.id == post.user.avatar.instance.id %>
+         
+            <span class="poster_image2"><%= image_tag comment_image ,:class => "your_icon_image" %></span>
+          <% end %>
+          
+        <% end %>
+  </span> 

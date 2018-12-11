@@ -3,9 +3,9 @@
       <br>
   
   <div class="container">
-    <%= form_for @post do |f| %>
+    <%= form_for @post,  html: {onSubmit:"return check()"} do |f| %>
       <div class="field">
-    
+        
         <%= f.label :title, "タイトル" %>
         <%= f.text_field :title,:size=>"50" %>
       <br>
@@ -22,10 +22,25 @@
       <div id="post_form">
       <!--最初ブロックの引数にもjunbanを入れていたが、消したらerrorがなくなった-->
       <%= f.fields_for :imagetexts do |imagetexts_form| %>
+      
+        <%= imagetexts_form.label :subtitle, "見出しその#{i+1}" %><br>
+        <%= imagetexts_form.text_field :subtitle,:size=>"80×1" %><br>
+        
+        
+        <div class="preview<%= i%>">
+       
         <%= imagetexts_form.label :image, "画像その#{i+1}" %>
-        <%= imagetexts_form.file_field :image %><br />
+        <%= imagetexts_form.file_field :image  %><br>
+        
+        </div>
+        
+        <div class="preview_display<%= i%>"></div>
+        
+      
+   
         <%= imagetexts_form.label :content, "本文その#{i+1}" %><br>
-        <%= imagetexts_form.text_area :content,:size=>"100",:col=>"40" ,:row=>"20" %><br />
+        <%= imagetexts_form.text_area :content,:size=>"100",:col=>"40" ,:row=>"20" %><br >
+        
         <%= imagetexts_form.hidden_field :status, :value => junban[i] %>
         <% i = i + 1   %>
         <br>
@@ -38,18 +53,24 @@
       
        </div>
        
-
+    
           
     <% end %>
       <%= f.label :youtube, "Youtube動画埋め込み"%>
       <%= f.text_field :youtube,:size=>"70" %>
         <br>
-
-
-     <div class="actions">
+        
+  <div class="actions">
       <%= f.submit %>
      </div>
       <% end %>
+      
+      
+      
     </div>
   </div>
 </div>
+
+
+
+

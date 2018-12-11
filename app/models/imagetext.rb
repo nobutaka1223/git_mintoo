@@ -1,7 +1,18 @@
 class Imagetext < ActiveRecord::Base
   belongs_to :post
-  enum status: {ichiban: 0, niban: 1, sanban: 2, yoban: 3, goban: 4, rokuban: 5 }
   
+  validates :content,
+          allow_blank: true,
+          exclusion: { in: %w(nobutakaito) }
+  validates :image,
+          allow_blank: true,
+          # バリデーションはallowblank以外に１つは含まないといけないので無理やりexclusion
+          exclusion: { in: %w(nobutakaito) }
+          
+   validates :subtitle,
+          allow_blank: true,
+          # バリデーションはallowblank以外に１つは含まないといけないので無理やりexclusion
+          exclusion: { in: %w(nobutakaito) }
   
 
   mount_uploader :image, ImageUploader

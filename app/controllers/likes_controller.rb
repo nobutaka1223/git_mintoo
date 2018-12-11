@@ -1,11 +1,13 @@
 class LikesController < ApplicationController
-    
-    before_actioin :set_post
+    before_action :set_post
+ 
 
     def create
         @like = Like.create(user_id: current_user.id, post_id: params[:post_id])
         @likes = Like.where(post_id: params[:post_id])
-        @posts.reload
+        @post.reload
+        # Post.all
+        # @post = Post.find(params[:post_id])
         
     end
     
@@ -13,14 +15,19 @@ class LikesController < ApplicationController
         like = Like.find_by(user_id: current_user.id, post_id: params[:post_id])
         like.destroy
         @likes = Like.where(post_id: params[:post_id])
-        @posts.reload
+        @post.reload
+        
+        # @posts = Post.all
+        # @post = Post.find(params[:post_id])
+        
     end
-    
     
     private
     
     def set_post
-        @post= Post.find(params[:post_id])
+     @posts = Post.all
+     @post = Post.find(params[:post_id])
     end
+
     
 end

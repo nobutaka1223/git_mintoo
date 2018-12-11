@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-  has_many :posts
-  has_many :comments
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :comments,  dependent: :destroy
+  has_many :likes,  dependent: :destroy
   
   has_attached_file :avatar,
                       styles: { medium: "300x300#", thumb: "100x100" }
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   
  
   
-  
+  # user.find_for_oauthはメソッド内でcurrent_user等のメソッドが使えなかったが、controllerから引数で渡してあげればできる。
   def self.find_for_oauth(auth,usersignedin,userself)
     
     

@@ -1,0 +1,35 @@
+     <!-- ここからフォーム -->
+    <% if current_user %>
+      <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
+        <textarea name="text" placeholder="コメントする" rows="2" cols="100"></textarea>
+        <input type="submit" value="SENT">
+      <% end %>
+    <% end %>
+
+
+
+
+    <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      
+      <% if @comments %>
+      
+        <% @comments.each do |comment| %>
+        <div class="comment clearfix">
+        <p>
+          
+           <% if comment.user.avatar_file_name %>
+            <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+           <%else%>
+            <div class="poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+           <%end%>
+           
+          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
+          <%= simple_format(comment.text) %>
+        </p>
+        </div>
+        <% end %>
+        
+      <% end %>
+      
+    </div>

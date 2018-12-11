@@ -20,6 +20,8 @@
         </ul>
       </li>
     </ul>
+    
+    <span>　　カテゴリ：全て</span>
 
    
    <%= render partial: "posts" %>
@@ -27,4 +29,4 @@
 
 
 
-   
+   <%= paginate(@posts) %>

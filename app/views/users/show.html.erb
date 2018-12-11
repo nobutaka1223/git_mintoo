@@ -1,5 +1,6 @@
-<div class="contentsrow">
-    <div class="user_image"><%= image_tag @user.avatar ,:class => "your_icon_image" %></div>
+<div class ="introduction_and_recentcomment">
+    
+    <div class="div_your_icon_image"><%= image_tag @user.avatar ,:class => "your_icon_image" %></div>
     <br>
     <p class= "fukidashi"><%= @user.nickname %>さんの自己紹介<br><br>
     <%= @user.introduction %></p>
@@ -14,7 +15,7 @@
    
     <br>
     <p class="mannnaka"><%= @user.nickname %>さんの投稿一覧</p>
-   
+       
        <%= render partial: "posts/posts" %>
        
        
@@ -22,5 +23,6 @@
        
        
        
-       
+ </div>
+ 
 </div>

@@ -8,9 +8,10 @@
     
  
     
-    
+     
     <div class="post_head_foot">
-      <p>投稿日時：<%= post.created_at%></p>
+      <%  dt = post.created_at %>
+      <p>投稿日時：<%= dt.strftime("%Y年%m月%d日 %H時%M分")%></p>
       
       <%= link_to "#{post.title}",  post_path(post.id) , id:"posts_title"%>
       <br>
@@ -29,7 +30,7 @@
     
     </div>
     
-    <br><br><br><br><br>
+    <br><br><br>
     
     
     
@@ -37,7 +38,7 @@
     <% if post.imagetexts(status:0)[0] %>
     
     
-     <%=  image_tag post.imagetexts(status:0)[0].image, :size => "400x400", :class => "postsumbnail"%> 
+     <%=  image_tag post.imagetexts(status:0)[0].image, :size => "200x200", :class => "postsumbnail"%> 
      
      <% else %>
      
@@ -70,8 +71,13 @@
 
     <br><br>
     
-    
+        
+       <div id ="likes_button_<%= post.id %>">  
+        
        <%= render partial: "posts/like", locals: { post: post } %>
+       
+       </div>
+       
     </div>
     
     </div>

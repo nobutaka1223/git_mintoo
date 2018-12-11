@@ -1,1 +1,0 @@
-$("#like-buttons").html("<%= j(render partial: 'posts/like', locals: { posts: @posts, post: @post, likes: @likes }) %>");
