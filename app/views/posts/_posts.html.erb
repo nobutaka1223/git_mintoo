@@ -30,25 +30,28 @@
     
     </div>
     
-    <br><br><br>
+    <br>
     
     
     
     <!--取得したimagetextsのレコードはなぜか配列に入っているらしい。なので書き方は[0]を付けてあげないといけない-->
-    <% if post.imagetexts(status:0)[0] %>
-    
-    
-     <%=  image_tag post.imagetexts(status:0)[0].image, :size => "200x200", :class => "postsumbnail"%> 
+     <% imar = []%>
+        <% post.imagetexts.each do |im| %>
+            <% imar << im.image.url %>
+        <% end %>
+        
+        <% imar = imar.compact %>
+        <% if imar.blank? %>
+            <%=  image_tag ("/images/gazounaiyo.png"), :size => "300x60" %> 
+            
+        <% else %>
+         
+            <%=  image_tag imar.first, :size => "200x200", :class => "postsumbnail"%> 
+         
+        <% end %>
+         
      
-     <% else %>
-     
-     <%=  image_tag ("/images/gazounaiyo.png"), :size => "300x60" %> 
-     
-     
-     <% end %>
-     
-     <br><br>
-    
+   
     
      <% if post.imagetexts(status:0)[0] %>
     
@@ -60,7 +63,7 @@
     
     
 
-    <br><br><br>
+    
     
     
     
@@ -68,8 +71,13 @@
     <div class="post_head_foot">
     <p><h3><%= link_to '投稿の詳細はこちら', "/posts/#{post.id}", method: :get %></3></p>
     
-
-    <br><br>
+    
+    <!--#twitter共有ボタン-->
+    <div class="twitter">
+        　<a href="//twitter.com/share" class="twitter-share-button" data-text="<%= post.title %>" data-url="https://mintoo-nobutaka0101.c9users.io/posts/<%= post.id %>" data-lang="ja">
+         Tweet
+         </a>
+    </div>
     
         
        <div id ="likes_button_<%= post.id %>">  

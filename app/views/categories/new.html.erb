@@ -1,0 +1,23 @@
+<div class="content_row">
+  <p><h3>カテゴリーを増やそう☆</h3></p>
+      <br>
+  
+  <div class="container">
+    <%= form_for @category do |f| %>
+      <div class="field">
+    
+        <%= f.label :name, "カテゴリー名" %>
+        <%= f.text_field :name , :size => "50"%>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      
+      </div>
+  
+
+
+
+   <div class="actions">
+    <%= f.submit %>
+   </div>
+    <% end %>
+  </div>
+</div>

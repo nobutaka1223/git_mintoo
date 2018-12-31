@@ -5,9 +5,9 @@ class PostsController < ApplicationController
     
     def index
     
-        @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
-        @post = Post.find(2) 
-     
+        @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(10)
+        
+        
         
     end
     
@@ -29,8 +29,10 @@ class PostsController < ApplicationController
         @post = Post.new
         @post.imagetexts.build
         # @twitter_checkbox= true
-          render :layout => "second_layout"
+        @error = params[:flash][:error] unless params[:flash].blank?
         
+
+          render :layout => "second_layout"
         
         
     end
@@ -41,36 +43,54 @@ class PostsController < ApplicationController
             
         #  current_user.posts.create(post_params)だけでは下のif @postがno methoderrorになってしまったので、@postに入れてあげたら動いた
                 
-        @post = current_user.posts.create(post_params)
+        @post = current_user.posts.new(post_params)
     
-       
         
-        if @post.imagetexts
+        if @post.valid?
             
             
-            @post.save
+            if @post.imagetexts.present?
+                
+                @post.save
+            else
+            
+                redirect_to action: :new, flash: { error: "投稿の内容（見出し・本文・画像）のいずれかを入力してください。" }  and return
+
+            end   
+                
+            
         # チェックボックス入れてtwitterに投稿する場合
         #   if params.require(:page) 
             
         #     @client.update("#{@post.title}\r")
         #     redirect_to root_path
         #   end
-          
+            redirect_to action: :create_done and return
           
         else
             
-            render 'new'
+            
+            redirect_to action: :new, flash: { error: @post.errors.full_messages }  and return
+
+            
+            
         end
-   
-        
+
         
     end
 
 
     def ranking
-        @posts = Post.includes(:user,:imagetexts).all.order("likes_count DESC").page(params[:page]).per(5)
+        @posts = Post.includes(:user,:imagetexts).all.order("likes_count DESC").page(params[:page]).per(10)
 
     end
+    
+    def ascendant
+        @posts = Post.includes(:user,:imagetexts).order("created_at ASC").page(params[:page]).per(10)
+    end
+       
+        
+        
 
 
  
@@ -104,11 +124,11 @@ class PostsController < ApplicationController
         #     @client.update("#{@post.title}\r")
         #     redirect_to root_path
         #   end
-          
+          redirect_to action: :create_done and return
           
         else
             
-            render 'edit_post_path'
+            render 'edit_post_path' and return
         end
         
     end
@@ -122,6 +142,8 @@ class PostsController < ApplicationController
         post = Post.find(params[:id])
 
         post.destroy if post.user_id == current_user.id
+        
+        @user = current_user
     end
 
     

@@ -1,0 +1,10 @@
+ja:
+    activerecord:
+        attributes:
+            user: 
+                nickname: 登録名
+                email: メールアドレス
+                password: パスワード
+                password_confirmation: 確認用パスワード
+                remember_me: 次回から自動的にログイン
+                introduction: 自己紹介文

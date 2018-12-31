@@ -23,7 +23,7 @@
       <% imagetexts = @post.imagetexts.to_a %>
       
       <!--こんな書き方もあるのか、ここでモデル.newするのか、しかも配列にして＋で足しているのか-->
-      <% imagetexts = imagetexts + ([Imagetext.new(post_id: @post.id) ] * (6 - imagetexts.count) ) if imagetexts.count < 6 %>
+      <% imagetexts = imagetexts + ([Imagetext.new(post_id: @post.id) ] * (10 - imagetexts.count) ) if imagetexts.count < 6 %>
       
         <% imagetexts.each.with_index do |imagetext, index| %>
        <div id="post_form">

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   
   
   
+  get 'categories/new'
+
   root     'posts#index'  #/からの投稿一覧
   
   
@@ -22,15 +24,18 @@ Rails.application.routes.draw do
     resources :likes, only:[:create, :destroy]
   end
   resources :tools
+  resources :categories, only:[:create]
   resources :comments   #commentsテーブルに関するルーティング
   
-  
+  get '/ascendant' => 'posts#ascendant' #古い順
   get '/ranking' => 'posts#ranking'   #総合のランキング
   get 'tools/:id/show_ranking' => 'tools#show_ranking'   #カテゴリー別のランキング
-  
+  get 'tools/:id/ascendant' => 'tools#ascendant'  #カテゴリー別の古い順
+  get 'create_done' => 'posts#create_done'
 
   
   post 'posts/:post_id/comments' => 'comments#create' #ネストをしないでのコメントcreate
+  
   
   
   

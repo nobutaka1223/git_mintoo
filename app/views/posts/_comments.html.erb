@@ -16,17 +16,23 @@
       
         <% @comments.each do |comment| %>
         <div class="comment clearfix">
-        <p>
+        
           
-           <% if comment.user.avatar_file_name %>
-            <div class="poster_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
-           <%else%>
-            <div class="poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
-           <%end%>
-           
-          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
-          <%= simple_format(comment.text) %>
-        </p>
+             <% if comment.user.avatar_file_name %>
+              <div class="commenter_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+             <%else%>
+              <div class="commenter_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+             <%end%>
+          <div class="comment_commneter_and_text"> 
+            <div>
+            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
+            <%  dt = comment.created_at %>
+            <%= dt.strftime("%Y年%m月%d日 %H時%M分")%>
+            </div>
+            <div class="comment_text">
+              <%= simple_format(comment.text) %>
+            </div>
+          </div> 
         </div>
         <% end %>
         

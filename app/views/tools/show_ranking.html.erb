@@ -15,6 +15,7 @@
       <li><a href="#">投稿を並び替えする</a>
         <ul>
           <li><a href="/">投稿が新しい順（<%= @tool.name %>）</a></li>
+          <li><a href="/tools/<%= params[:id] %>/ascendant">投稿が古い順（<%= @tool.name %>）</a></li>
           <li><a href="/ranking">いいね！ランキング順（<%= @tool.name %>）</a></li>
         </ul>
       </li>

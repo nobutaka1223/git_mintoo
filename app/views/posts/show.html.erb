@@ -37,8 +37,8 @@
       <br>
     
     <% end %>
-    
-    <% if @post.youtube %>
+
+    <% unless @post.youtube.blank? %>
     <%= youtube(@post) %>
     <% end %>
     
@@ -57,6 +57,13 @@
 
 
     <% end %>
+    
+     <!--#twitter共有ボタン-->
+    <div class="twitter">
+        　<a href="//twitter.com/share" class="twitter-share-button" data-text="<%= @post.title %>" data-url="https://mintoo-nobutaka0101.c9users.io/posts/<%= @post.id %>" data-lang="ja">
+         Tweet
+         </a>
+    </div>
     
     
     

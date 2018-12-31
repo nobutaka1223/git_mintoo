@@ -22,6 +22,12 @@ class ToolsController < ApplicationController
        
     end
     
+    def ascendant
+        @posts = Post.where(tool_id: params[:id]).order("created_at ASC").page(params[:page]).per(5)
+        @tool = Tool.find_by(id: params[:id])
+       
+    end
+    
     def show_ranking
         @posts = Post.where(tool_id: params[:id]).order("likes_count DESC").page(params[:page]).per(5)
         @tool = Tool.find_by(id: params[:id])
@@ -30,7 +36,7 @@ class ToolsController < ApplicationController
     
     private
     def tool_params
-        params.require(:tool).permit(:name)
+        params.require(:tool).permit(:name,:user_id, :category_id)
     end
     
 end

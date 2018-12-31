@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:edit, keys: [:nickname, :introductin, :avatar])
   end
   
+  
+  $categories = Category.all
+  
   $tools = Tool.all
   
   $likes = Like.all

@@ -59,46 +59,48 @@
         <div id="container"></div>
         
           <div class="treemenu">
-          <% kategori = ["その他", "電験三種"] %>
-          <% i = 0 %>
-          <% while i< kategori.length do %>
           
+ 
+          <% $categories.each do |c| %>
           
-          <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
-          <p class="lv1btn"><%= kategori[i] %>
-            <% counts = 0 %>
-            <% $tools.where(category: kategori[i]) .each do |tool| %>
-              <% counts += tool.posts.count %>
-            <% end %>
-            (<%= counts %>) 
-          </p>
-          
-          
-          
-          
-          <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
-          
-          <div class="lv1body">
-          <%  $tools.where(category: kategori[i]) .each do |t| %>
-      
-            <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+
             
-          <% end %>
-          
-          <% i = i + 1 %>
-          
+            <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
+            <p class="lv1btn"><%= $c %>
+            
+              <%= c.name %> (<%= c.tools.count  %>)
+              
+              
+              
+            </p>
+             
+            <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
+            
+            <div class="lv1body">
+            <% $tools.where(category_id: c.id).each do |t| %>
+           
+              
+              <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+
+            
+            <% end %>
+            
+            </div>
+            
+            
+            
+            <% end %>
           </div>
-          
-          <% end %>
           </div>
-      </div>
-      
-    </div>
-</div>
+          </div>
+          </div>
+
 
       
   
-
+ 
+  
+    
        
         
     <!--コンテンツ中央-->
@@ -164,7 +166,10 @@
                    <li>   <a class="post" href="/posts/new">投稿する！</a>
                    </li>
                    
-                   <li>   <a class="tool" href="/tools/new">カテゴリーをつくる</a>
+                    <li>   <a class="tool" href="/tools/new">ツールをつくる</a>
+                   </li>
+                   
+                   <li>   <a class="tool" href="/categories/new">カテゴリーをつくる</a>
                    </li>
                    
                  </ul>
