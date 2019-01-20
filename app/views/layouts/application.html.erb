@@ -103,6 +103,18 @@
                    <li>   <a class="tool" href="/categories/new">カテゴリーをつくる</a>
                    </li>
                    
+                   <li>   <a class="tool" href="/users/<%= current_user.id %>/series_new">自分の投稿シリーズをつくる</a>
+                   
+                   </li>
+                   
+                    <% if current_user.id == User.find(1).id %>
+                       <li>   <a class="tool" href="/oyacategories/new">親カテゴリーをつくる</a>
+                       </li>
+                    
+                    <% end %>
+                   
+                   
+                   
                  </ul>
                 </span>
                 
@@ -131,47 +143,88 @@
     
 
 
-    <!--最近コメントのあった投稿-->
-
-  <div id ="recent_comments">
-    
-    <span><h3>最近のコメント</h3></span>
-    
-    <% $comments .each do |comment| %>
-      <div class="recent_comment">
-         <h5><%= link_to "#{comment.post.title}",  post_path(comment.post.id) , id:"posts_title2"%></h5>
-       
-        <br>
-        
-          <% if comment.user.avatar_file_name %>
-            <div class="recent_comment_poster_image"><%= image_tag comment.user.avatar ,:class => "recent_comment_icon_image" %></div>
-           <%else%>
-            <div class="recent_comment_poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "recent_comment_anonimous_image" %></div>
-          <%end%>
-        
-        <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
-       
-       <br>
-       
-       <div class="introduction_and_recentcomment"> 
+    <!--いいねランク最近のコメ-->
+  <div id="iinerank_recentcom"> 
+  
+     <!--いいねランキング-->
+    <div id ="iinerank">
+      
+      <span><h4>いいね！多い人ランキング</h4></span>
+      
+      <% $users .each.with_index(1) do |user, index| %>
+        <div class="recent_comment">
+          
+            <h3 >第<%= index%>位</h3>
+          
+           <span>
+             
+             
+          
+              <% if user.avatar_file_name %>
+                <div class="recent_comment_poster_image"><%= image_tag user.avatar ,:class => "recent_comment_icon_image" %></div>
+               <%else%>
+                <div class="recent_comment_poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "recent_comment_anonimous_image" %></div>
+              <%end%>
+              
+              <h5 style="display:inline;"><%= link_to "#{user.nickname}",  user_path(user.id) , id:"posts_title2"%></h5>
+              
+               
+           </span>
+           
+          <br>
          
-            <%= simple_format(comment.text[0..20],:class => "fukidashi") %>
-        
-       </div>
-         
-        
-     </div>   
-        
+         <div class="introduction_and_recentcomment"> 
+           
+              <p><h4>いいね！数</h4><h4  style="display:inline;"><%= user.likes_count %></h4></p>
+          
+         </div>
+           
+          
+       </div>   
           
         
-        
-        
-     
+      <% end %>
       
-    <% end %>
-    
-    
-    
+      
+      
+     </div>
+     
+     <!--最近コメントのあった投稿-->
+    <div id ="recent_comments">
+      
+      <span><h3>最近のコメント</h3></span>
+      
+      <% $comments .each do |comment| %>
+        <div class="recent_comment">
+           <h5><%= link_to "#{comment.post.title}",  post_path(comment.post.id) , id:"posts_title2"%></h5>
+         
+          <br>
+          
+            <% if comment.user.avatar_file_name %>
+              <div class="recent_comment_poster_image"><%= image_tag comment.user.avatar ,:class => "recent_comment_icon_image" %></div>
+             <%else%>
+              <div class="recent_comment_poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "recent_comment_anonimous_image" %></div>
+            <%end%>
+          
+          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
+         
+         <br>
+         
+         <div class="introduction_and_recentcomment"> 
+           
+              <%= simple_format(comment.text[0..20],:class => "fukidashi") %>
+          
+         </div>
+           
+          
+       </div>   
+          
+        
+      <% end %>
+      
+      
+      
+     </div>
    </div>
     
     
@@ -193,14 +246,14 @@
           <div class="treemenu">
           
  
-          <% $categories.each do |c| %>
+          <% $oyacategories.each do |o| %>
           
 
             
             <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
-            <p class="lv1btn"><%= $c %>
-            
-              <%= c.name %> (<%= c.tools.count  %>)
+            <p class="lv1btn"><%= $o %>
+              
+              <%= o.name %> (<%= o.posts_counts  %>) 
               
               
               
@@ -209,10 +262,18 @@
             <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
             
             <div class="lv1body">
-            <% $tools.where(category_id: c.id).each do |t| %>
+            
+            <% $categories.where(oyacategory_id: o.id).each do |c| %>
            
               
-              <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+              <p class="lv2btn"><%= c.name %><%= c.posts.count %>  </p>
+              
+                <div class="lv2body">
+                  <h4>ツール</h4>
+                  <% $tools.where(category_id: c.id).each do |t| %>
+                    <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+                  <% end %>
+	              </div>
 
             
             <% end %>

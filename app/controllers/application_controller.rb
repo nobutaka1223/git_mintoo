@@ -11,14 +11,18 @@ class ApplicationController < ActionController::Base
   end
   
   
+  $oyacategories = Oyacategory.all
+  
   $categories = Category.all
   
   $tools = Tool.all
   
   $likes = Like.all
   
+  $users = User.order(likes_count: :desc).first(5)
+  
   $comments = Comment.order(created_at: :desc).first(5)
   
-
+  
   
 end

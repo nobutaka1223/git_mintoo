@@ -1,0 +1,26 @@
+
+
+
+
+
+
+<%= form_tag("/users/:id/series_create", method: "post") do %>
+
+  <%= label_tag(:series, "シリーズ") %>
+  <%= text_field_tag :series %>
+  
+
+      
+          <%= select_tag :post1, options_for_select(@titles, :include_blank => true)%>
+          <%= select_tag :post2, options_for_select(@titles) %>
+          <%= select_tag :post4, options_for_select(@titles) %>
+          <%= select_tag :post5, options_for_select(@titles) %>
+          <%= select_tag :post6, options_for_select(@titles) %>
+          <%= select_tag :post7, options_for_select(@titles) %>
+          <%= select_tag :post8, options_for_select(@titles) %>
+     
+  
+  
+  
+  <%= submit_tag("登録") %>
+<% end %>

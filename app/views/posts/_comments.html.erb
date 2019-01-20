@@ -1,10 +1,11 @@
      <!-- ここからフォーム -->
     <% if current_user %>
-      <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
+      <%= form_tag("/posts/#{@post.id}/comments", :remote=> true, method: :post, confirm:"コメントを投稿してよろしいでしょうか") do %>
         <textarea name="text" placeholder="コメントする" rows="2" cols="100"></textarea>
         <input type="submit" value="SENT">
       <% end %>
     <% end %>
+    
 
 
 
@@ -38,4 +39,4 @@
         
       <% end %>
       
-    </div>
+    </div

@@ -1,17 +1,14 @@
 <div class="content_row">
-  <p><h3>カテゴリーを増やそう☆</h3></p>
+  <p><h3>管理者ページ親カテゴリーを増やす☆</h3></p>
       <br>
   
   <div class="container">
-    <%= form_for @category do |f| %>
+    <%= form_for @oyacategory do |f| %>
       <div class="field">
     
-        <%= f.label :oyacategories, "カテゴリ"%>
-        <%= f.collection_select :oyacategory_id, Oyacategory.all, :id, :name%>
-        <%= f.label :name, "カテゴリー名" %>
+        <%= f.label :name, "親カテゴリー名" %>
         <%= f.text_field :name , :size => "50"%>
         <%= f.hidden_field :user_id, :value => current_user.id %>
-        
       
       </div>
   
@@ -24,3 +21,12 @@
     <% end %>
   </div>
 </div>
+
+
+
+
+
+
+
+
+

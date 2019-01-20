@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181222121757) do
+ActiveRecord::Schema.define(version: 20190108144822) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",           limit: 255
+    t.integer  "user_id",        limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "oyacategory_id", limit: 4
   end
 
+  add_index "categories", ["oyacategory_id"], name: "index_categories_on_oyacategory_id", using: :btree
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
@@ -49,6 +51,15 @@ ActiveRecord::Schema.define(version: 20181222121757) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "oyacategories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "oyacategories", ["user_id"], name: "index_oyacategories_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
     t.integer  "tool_id",        limit: 4
@@ -58,6 +69,7 @@ ActiveRecord::Schema.define(version: 20181222121757) do
     t.integer  "likes_count",    limit: 4,   default: 0
     t.integer  "comments_count", limit: 4,   default: 0
     t.string   "youtube",        limit: 255
+    t.string   "series",         limit: 255
   end
 
   add_index "posts", ["tool_id"], name: "fk_rails_2b46186b11", using: :btree
@@ -96,13 +108,16 @@ ActiveRecord::Schema.define(version: 20181222121757) do
     t.string   "provider",               limit: 255
     t.string   "accesstoken",            limit: 255
     t.string   "secrettoken",            limit: 255
+    t.integer  "likes_count",            limit: 4,     default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "categories", "oyacategories"
   add_foreign_key "categories", "users"
   add_foreign_key "imagetexts", "posts"
+  add_foreign_key "oyacategories", "users"
   add_foreign_key "posts", "tools"
   add_foreign_key "posts", "users"
   add_foreign_key "tools", "categories"

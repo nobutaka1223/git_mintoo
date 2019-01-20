@@ -135,6 +135,30 @@ header{
 
  /*　画面サイズが750pxまではここを読み込む　*/
 @media screen and (max-width: 750px){
+  
+ 
+#iinerank_recentcom{
+   margin: 200px 0px 0px 0px !important;
+}
+ 
+#iinerank{
+   margin: auto;
+   padding: 10px 10px 10px 10px ;
+    border-width: 0.5;
+    border-color: #bbb;
+    border-style: solid;
+    border-radius: 10px;
+    width: 350px;
+
+}
+
+.treemenu {
+  float: left !important;
+  width: 256px;
+  margin-left: 200px !important;
+  // border-right: 1px solid #ccc;
+}
+
 
 header{
   width: 780px!important;
@@ -709,9 +733,22 @@ footer {
   // 最近コメントのあった投稿
 
 
+#iinerank_recentcom{
+   margin: 200px 0px;
+}
+
+#iinerank{
+    padding: 10px 10px 10px 10px ;
+    border-width: 0.5;
+    border-color: #bbb;
+    border-style: solid;
+    border-radius: 10px;
+    width: 350px;
+}
+
 #recent_comments{
   
-    margin: 310px 0px;
+    
     padding: 10px 10px 10px 10px ;
     border-width: 0.5;
     border-color: #bbb;

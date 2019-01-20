@@ -1,0 +1,27 @@
+ <!--<div class="content_post" style="background-image": url(<);>-->
+    
+    <ul>
+    
+    <% @posts.each do |post| %>
+  
+  
+      
+    <li class="">
+    
+ 
+    
+    
+      <%  dt = post.created_at %>
+      <p>投稿日時：<%= dt.strftime("%Y年%m月%d日")%>
+      
+      <%= link_to "#{post.title}",  post_path(post.id) , id:"posts_title"%>
+      
+      いいね！数：<%= post.likes_count %>  コメント数：<%= post.comments_count %><p>
+      
+      
+    </li>  
+      
+    
+      
+  <% end %>
+  </ul>

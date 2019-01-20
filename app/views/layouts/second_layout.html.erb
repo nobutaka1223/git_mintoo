@@ -50,7 +50,7 @@
         
     
   
-    <!--メニュー左端-->
+        <!--メニュー左端-->
     <div id="menu">
       
       <h2>カテゴリー</h2>
@@ -61,14 +61,14 @@
           <div class="treemenu">
           
  
-          <% $categories.each do |c| %>
+          <% $oyacategories.each do |o| %>
           
 
             
             <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
-            <p class="lv1btn"><%= $c %>
-            
-              <%= c.name %> (<%= c.tools.count  %>)
+            <p class="lv1btn"><%= $o %>
+              
+              <%= o.name %> (<%= o.posts_counts  %>) 
               
               
               
@@ -77,10 +77,18 @@
             <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
             
             <div class="lv1body">
-            <% $tools.where(category_id: c.id).each do |t| %>
+            
+            <% $categories.where(oyacategory_id: o.id).each do |c| %>
            
               
-              <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+              <p class="lv2btn"><%= c.name %><%= c.posts.count %>  </p>
+              
+                <div class="lv2body">
+                  <h4>ツール</h4>
+                  <% $tools.where(category_id: c.id).each do |t| %>
+                    <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+                  <% end %>
+	              </div>
 
             
             <% end %>
@@ -166,11 +174,21 @@
                    <li>   <a class="post" href="/posts/new">投稿する！</a>
                    </li>
                    
-                    <li>   <a class="tool" href="/tools/new">ツールをつくる</a>
+                   <li>   <a class="tool" href="/tools/new">ツールをつくる</a>
                    </li>
                    
                    <li>   <a class="tool" href="/categories/new">カテゴリーをつくる</a>
                    </li>
+                   
+                   <li>   <a class="tool" href="/users/<%= current_user.id %>/series_new">自分の投稿シリーズをつくる</a>
+                   
+                   </li>
+                   
+                    <% if current_user.id == User.find(1).id %>
+                       <li>   <a class="tool" href="/oyacategories/new">親カテゴリーをつくる</a>
+                       </li>
+                    
+                    <% end %>
                    
                  </ul>
                 </span>

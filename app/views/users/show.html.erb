@@ -2,7 +2,7 @@
     
     <div class="div_your_icon_image"><%= image_tag @user.avatar ,:class => "your_icon_image" %></div>
     <br>
-    <p class= "fukidashi"><%= @user.nickname %>さんの自己紹介<br><br>
+    <p class= "fukidashi"><%= @user.nickname %>さんの自己紹介<br>
     <%= @user.introduction %></p>
     <br>
    
@@ -10,13 +10,43 @@
     <br>
     
     <% if user_signed_in? && current_user.id == @user.id %>
-     <p class="mannnaka"><%=link_to "ユーザー登録情報を変更する",edit_user_path, method: :get %></p>
+        <p class="mannnaka"><%=link_to "ユーザー登録情報を変更する",edit_user_path, method: :get %></p>
     <% end %>
    
     <br>
+    
+    
+    <p class="mannnaka"><%= @user.nickname %>さんの投稿シリーズ</p>
+        
+        <div>
+
+        <% if @series %>    
+            <% @series.each do |series|  %>
+               
+                <%= series %>
+                
+                <ul>
+                    <% post = @post_series.where(series:series) %>
+                    <% post.each do |post| %>
+                    
+                        <li><%= link_to post.title, post_path(post) %> </li>
+                        
+                        
+                    <% end %>
+                    
+                </ul>
+
+                <h3><%= link_to 'このシリーズを削除する', controller: "users", action: "series_update", method: :get,   data: { confirm: 'このシリーズ削除しますか？' },  series: series %></h3>
+                      
+                    
+            <% end %>
+        <% end %>
+        </div> 
+    
+    
     <p class="mannnaka"><%= @user.nickname %>さんの投稿一覧</p>
        
-       <%= render partial: "posts/posts" %>
+       <%= render partial: "posts/posts2" %>
        
        
      
