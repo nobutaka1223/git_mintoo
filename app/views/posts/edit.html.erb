@@ -17,18 +17,18 @@
       <br>
       <br>
         
-      <!--以下はメンターの井上さんが書いたコード-->
-      <!--to_aは配列にするメソッドらしい。インスタンスにも使えるのね-->
+      <%#以下はメンターの井上さんが書いたコード
+      to_aは配列にするメソッドらしい。インスタンスにも使えるのね%>
       
       <% imagetexts = @post.imagetexts.to_a %>
       
-      <!--こんな書き方もあるのか、ここでモデル.newするのか、しかも配列にして＋で足しているのか-->
-      <% imagetexts = imagetexts + ([Imagetext.new(post_id: @post.id) ] * (10 - imagetexts.count) ) if imagetexts.count < 6 %>
+      <%#こんな書き方もあるのか、ここでモデル.newするのか、しかも配列にして＋で足しているのか
+       imagetexts = imagetexts + ([Imagetext.new(post_id: @post.id) ] * (10 - imagetexts.count) ) if imagetexts.count < 6 %>
       
         <% imagetexts.each.with_index do |imagetext, index| %>
        <div id="post_form">
-         <!--fields_forの引数？でattributesの:imagetextsを入れて、さらに引数でimagetextを入れたらeditが動いた。-->
-         <!--それまではparamsが全く、おかしくて生成されたhtmlを見たら各formのidとnameを下の様にしたらparamsが正常になったようだ。success！-->
+        <%# fields_forの引数？でattributesの:imagetextsを入れて、さらに引数でimagetextを入れたらeditが動いた。
+         それまではparamsが全く、おかしくて生成されたhtmlを見たら各formのidとnameを下の様にしたらparamsが正常になったようだ。success！ %>
         <%= f.fields_for :imagetexts, imagetext do |imagetexts_form| %>
           
           

@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   
   
-  
-  
-  
-
 
   root     'posts#index'  #/からの投稿一覧
   
@@ -16,6 +12,8 @@ Rails.application.routes.draw do
                                     registrations: 'registrations'
   }  #投稿一覧画面
   
+  post 'users/inquiry_send' => 'users#inquiry_send'
+  get 'users/inquiry' => 'users#inquiry'
   
   
   
@@ -30,6 +28,7 @@ Rails.application.routes.draw do
   resources :categories, only:[:new,:create]
   resources :tools
   resources :comments   #commentsテーブルに関するルーティング
+  resources :mypage_comments, only:[:create,:destroy]
   
   
   get '/ascendant' => 'posts#ascendant' #古い順
@@ -42,6 +41,8 @@ Rails.application.routes.draw do
   get 'users/:id/series_new' => 'users#series_new'
   post 'users/:id/series_create' => 'users#series_create'
   get '/users/:id/series_update' => 'users#series_update'
+
+  
   
   
   

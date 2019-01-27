@@ -1,0 +1,55 @@
+     <!-- ここからフォーム -->
+ 
+    <% if user_signed_in? %>
+      <%= form_for (@mypagecomment), remote: true do |f|  %>
+        <%= f.label :text %>
+        <%= f.text_field :text ,:size=>"80×5" %>
+        <%# わけわからんがhidden_fieldにも=がいるらしい%>
+        <%=  f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :userpage, value: params[:id] %>
+        <%= f.submit "コメントする", data: { confirm: "コメントを送信しますか？"} %>
+      <% end %>
+    <% end %>
+    
+    
+    
+    
+    
+    
+
+    <div class="mypage_comments">
+      <h4>＜コメント一覧＞</h4>
+      
+      <% if @mypagecomments %>
+      
+        <% @mypagecomments.each do |comment| %>
+        
+          
+          <% if comment.user_id == @user.id %>
+            <div class="comment ">
+          <% else %>
+            <div class="comment_others">
+          <% end %>
+            
+          
+             <% if comment.user.avatar_file_name %>
+                  <div class="commenter_image"><%= image_tag comment.user.avatar ,:class => "your_icon_image" %></div>
+             <%else%>
+                  <div class="commenter_image"><%= image_tag "/images/neko_free.jpg" ,:class => "anonimous_image" %></div>
+             <%end%>
+          <div class="comment_commenter_and_text"> 
+            <div>
+                <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
+                    <%  dt = comment.created_at %>
+                    <%= dt.strftime("%Y年%m月%d日 %H時%M分")%>
+            </div>
+            <div class="comment_text">
+              <%= simple_format(comment.text) %>
+            </div>
+          </div> 
+        </div>
+        <% end %>
+        
+      <% end %>
+      
+    </div>

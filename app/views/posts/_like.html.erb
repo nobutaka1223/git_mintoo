@@ -2,9 +2,8 @@
   
     <% if post.like_user(current_user.id) %>
  
-        
-        <!--rake routesでpost_like_pathを見る限りpost_idとlike_idを渡さなければいけない。
-        post.like_userはlikeモデルのインスタンスを返し、：のキーを付ける必要ない-->
+        <%#rake routesでpost_like_pathを見る限りpost_idとlike_idを渡さなければいけない。
+        post.like_userはlikeモデルのインスタンスを返し、：のキーを付ける必要ない%>
         <%= button_to post_like_path(post.like_user(current_user.id), post_id: post.id), 
         method: :delete,id: "like-buttons",class: "like-button_already", remote: true do%>  
         
@@ -12,7 +11,7 @@
         <% end %>
     <% else %>
  
-      <!--button＿toメソッドはデフォルトでpostメソッドhtmlを行う-->
+      <%#button＿toメソッドはデフォルトでpostメソッドhtmlを行う%>
         <%= button_to post_likes_path(post), id: "like-buttons",class: "like-button_yet", remote: true do%>
           
       

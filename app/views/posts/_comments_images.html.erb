@@ -14,7 +14,7 @@
           
           <% comments_images .each do |comment_image| %>
           
-            <!--comment＿imageのidは最初どうやったら取れるのかわからなかったけど、以下のようにやったら取れた-->
+            <%#comment＿imageのidは最初どうやったら取れるのかわからなかったけど、以下のようにやったら取れた %>
             <% next if comment_image.instance.id == post.user.avatar.instance.id %>
          
             <span class="poster_image2"><%= image_tag comment_image ,:class => "your_icon_image" %></span>

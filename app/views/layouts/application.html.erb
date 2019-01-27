@@ -149,7 +149,7 @@
      <!--いいねランキング-->
     <div id ="iinerank">
       
-      <span><h4>いいね！多い人ランキング</h4></span>
+     <h4>いいね！多い人ランキング</h4>
       
       <% $users .each.with_index(1) do |user, index| %>
         <div class="recent_comment">
@@ -171,11 +171,11 @@
                
            </span>
            
-          <br>
+          <br> <br>
          
-         <div class="introduction_and_recentcomment"> 
+         <div class="iine_rank_div"> 
            
-              <p><h4>いいね！数</h4><h4  style="display:inline;"><%= user.likes_count %></h4></p>
+              <p>いいね！数<span><%= user.likes_count %></span></p>
           
          </div>
            
@@ -212,7 +212,7 @@
          
          <div class="introduction_and_recentcomment"> 
            
-              <%= simple_format(comment.text[0..20],:class => "fukidashi") %>
+              <p><%= comment.text[0..20] %></p>
           
          </div>
            
@@ -250,7 +250,7 @@
           
 
             
-            <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
+            
             <p class="lv1btn"><%= $o %>
               
               <%= o.name %> (<%= o.posts_counts  %>) 
@@ -259,7 +259,7 @@
               
             </p>
              
-            <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
+           
             
             <div class="lv1body">
             
@@ -269,7 +269,7 @@
               <p class="lv2btn"><%= c.name %><%= c.posts.count %>  </p>
               
                 <div class="lv2body">
-                  <h4>ツール</h4>
+                 
                   <% $tools.where(category_id: c.id).each do |t| %>
                     <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
                   <% end %>
@@ -317,6 +317,7 @@
     
   <footer >
       <br><br><br><br>
+    <%= link_to "お問い合わせ・質問などなど", "users/inquiry"%>
       
     <p style="text-align:center">
       Copyright noby 2018.

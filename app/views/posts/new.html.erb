@@ -23,7 +23,7 @@
     <% i = 0  %> 
     <% while i < 10  %> 
       <div id="post_form">
-      <!--最初ブロックの引数にもjunbanを入れていたが、消したらerrorがなくなった-->
+      <%#最初ブロックの引数にもjunbanを入れていたが、消したらerrorがなくなった%>
       <%= f.fields_for :imagetexts do |imagetexts_form| %>
       
         <%= imagetexts_form.label :subtitle, "見出しその#{i+1}" %><br>

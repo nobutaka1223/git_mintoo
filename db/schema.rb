@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190108144822) do
+ActiveRecord::Schema.define(version: 20190126070833) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20190108144822) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  create_table "mypage_comments", force: :cascade do |t|
+    t.string   "text",       limit: 255
+    t.integer  "userpage",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "mypage_comments", ["user_id"], name: "index_mypage_comments_on_user_id", using: :btree
+  add_index "mypage_comments", ["userpage"], name: "index_mypage_comments_on_userpage", using: :btree
 
   create_table "oyacategories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -117,6 +128,7 @@ ActiveRecord::Schema.define(version: 20190108144822) do
   add_foreign_key "categories", "oyacategories"
   add_foreign_key "categories", "users"
   add_foreign_key "imagetexts", "posts"
+  add_foreign_key "mypage_comments", "users"
   add_foreign_key "oyacategories", "users"
   add_foreign_key "posts", "tools"
   add_foreign_key "posts", "users"

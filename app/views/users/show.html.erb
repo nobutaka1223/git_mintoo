@@ -1,9 +1,11 @@
-<div class ="introduction_and_recentcomment">
+<div class ="introduction">
     
     <div class="div_your_icon_image"><%= image_tag @user.avatar ,:class => "your_icon_image" %></div>
     <br>
-    <p class= "fukidashi"><%= @user.nickname %>さんの自己紹介<br>
-    <%= @user.introduction %></p>
+        <div class ="introduction_and_recentcomment">
+            <p style="text-align:center" ><%= @user.nickname %>さんの自己紹介</p>
+            <%=simple_format(h( @user.introduction)) %>
+        </div>
     <br>
    
     
@@ -14,6 +16,17 @@
     <% end %>
    
     <br>
+
+    
+    
+    <div class="mypage_comment_container">
+    
+     <%= render partial: "users/comments" %>
+    
+    
+    </div>
+    
+    
     
     
     <p class="mannnaka"><%= @user.nickname %>さんの投稿シリーズ</p>

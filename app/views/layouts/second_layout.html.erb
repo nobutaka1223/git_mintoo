@@ -30,7 +30,7 @@
       <%= link_to root_path,  class: "title"  do %>
         <%= image_tag "/images/mintoo_title_logo2.png" %>
       <% end %>
-      <!--ユーザーがサインインしてる場合-->
+      <%#ユーザーがサインインしてる場合%>
       
       
      
@@ -65,7 +65,7 @@
           
 
             
-            <!--ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている-->
+            <%#ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている%>
             <p class="lv1btn"><%= $o %>
               
               <%= o.name %> (<%= o.posts_counts  %>) 
@@ -74,7 +74,7 @@
               
             </p>
              
-            <!--link_toメソッドにはpathの後に、（）でidを指定してあげること。rubyの式展開の仕方は下記で間違っていないようだ。-->
+            
             
             <div class="lv1body">
             
@@ -84,7 +84,7 @@
               <p class="lv2btn"><%= c.name %><%= c.posts.count %>  </p>
               
                 <div class="lv2body">
-                  <h4>ツール</h4>
+                  
                   <% $tools.where(category_id: c.id).each do |t| %>
                     <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
                   <% end %>

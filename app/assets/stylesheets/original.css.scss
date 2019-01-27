@@ -255,7 +255,7 @@ img.title{
           float: right;
           margin-left: 60px;
           width: 100%;
-          height: 200px;
+          height: 100px;
           font-size: 1em;
           cursor: pointer;
           position: relative;
@@ -549,59 +549,58 @@ img.title{
 // ユーザーページのユーザー情報について
 
 
-
-.introduction_recentcomment{
-  
-  // float:left;
-  padding: 20px;
-  width: 100%;
-  
-
  
  //ここから吹き出し
-   p.fukidashi {
-  // width: 100%;
- 	position: relative;
-	display: block;
- 	margin: 0,auto;
+   .introduction_and_recentcomment {
+ position: relative;
+	display: inline-block;
+ 	margin: 1.5em 0;
 	padding: 7px 10px;
 	min-width: 120px;
- 	width: 100%;
+ 	max-width: 100%;
  	color: #555;
 	font-size: 16px;
 	background: #FFF;
  	border: solid 3px #555;
  	box-sizing: border-box;
- 	border-radius: 10px;
+ 	width: 100%;
+ 	height: 100%;
  	
-}
+   }
 
-p.fukidashi:before{
+
+.introduction_and_recentcomment:before{
 	content: "";
 	position: absolute;
-	top: -24px;
-	left: 50%;
+	top:  -24px;
+	left: 20%;
  	margin-left: -15px;
 	border: 12px solid transparent;
 	border-bottom: 12px solid #FFF;
- 	z-index: 2;
+	z-index: 2;
+ 	
 }
-
-p.fukidashi:after{
+.introduction_and_recentcomment:after{
 	content: "";
 	position: absolute;
 	top: -30px;
-	left: 50%;
+	left: 20%;
  	margin-left: -17px;
 	border: 14px solid transparent;
 	border-bottom: 14px solid #555;
  	z-index: 1;
 }
 
+.introduction_and_recentcomment p{
+  margin: 0;
+  padding: 0;
+ 	
+}
+
 
 
 //ここまで吹き出し
-}
+
 
 
 .mannnaka{
@@ -620,11 +619,20 @@ p.fukidashi:after{
     padding: 30px;
 }
 
+.comment{
+   clear: both;
+
+}
 
 
+.comment_others {
+  clear: both;
+  float: right;
+}
 
-
-
+.mypage_comment_container{
+  
+}
 
 
 .like-button_already{
@@ -648,15 +656,16 @@ textarea{
 }
 
 
-.comments{
+.mypage_comments{
+  height: 300px;
+  width: 100%;
+  overflow: scroll;
   
 }
 
-#comment{ 
-  // clear: both;
-  
-  
-}
+
+
+
 
 footer {
   clear:both
@@ -788,8 +797,8 @@ footer {
 
 .recent_comment_icon_image, .recent_comment_anonimous_image {
           
-          width: 100px;
-          height: 100px;
+          width: 45px;
+          height: 45px;
           overflow: hidden;
           border-radius: 100px;
           border-color: $mizuiro;

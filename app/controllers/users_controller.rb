@@ -11,6 +11,10 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @posts = @user.posts.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(5)
          
+        
+        @mypagecomment = MypageComment.new
+        @mypagecomments = MypageComment.where(userpage:params[:id]).order("created_at DESC")
+    
          
          
         @series = current_user.posts.pluck("series").uniq.reject(&:blank?)
@@ -88,6 +92,21 @@ class UsersController < ApplicationController
         
     end
     
+    
+    def inquiry
+    
+        
+    end
+    
+    def inquiry_send
+      
+        
+       inquiry = Inquiry.new(name: params[:name],email: params[:email],message: params[:text])
+       InquiryMailer.send_mail(inquiry).deliver_now
+       
+
+        
+    end
     
     
     

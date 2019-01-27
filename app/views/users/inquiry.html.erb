@@ -1,0 +1,18 @@
+<h2>お問い合わせ</h2>
+
+<%= form_tag("/users/inquiry_send", method: "post") do %>
+
+    
+    <%= label_tag(:name, "お名前" )%>
+    <%= text_field_tag :name ,current_user.nickname %>
+    
+    <%= label_tag(:email, "返信用アドレス" )%>
+    <%= text_field_tag :email ,current_user.email %>
+    
+    <%= label_tag(:text, "問い合わせ内容") %>
+    <%= text_field_tag :text %>
+
+  
+  
+  <%= submit_tag("送信") %>
+<% end %>
