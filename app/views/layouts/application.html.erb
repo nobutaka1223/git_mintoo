@@ -76,7 +76,17 @@
             
             <h5 style="text-align: right;"><span >もらったいいね！の数：</span><%= $likes.where(post_id:current_user.posts.ids).count %></h5>
             
+            <% current_user.posts.each do |post| %>
+                <%  if post.unread == 1 %>
+                <%= image_tag "/images/midokukome.png" , :class => "midokukome" %>
+                <% end %>
+            <% end %>
             
+            
+                <%  if current_user.unread == 1 %>
+                <%= image_tag "/images/my_midokukome.png" , :class => "midokukome" %>
+                <% end %>
+           
             
               <div class="user_nav">
                 <span>
@@ -152,6 +162,8 @@
      <h4>いいね！多い人ランキング</h4>
       
       <% $users .each.with_index(1) do |user, index| %>
+      
+        <%  next if user.likes_count == 0 %>
         <div class="recent_comment">
           
             <h3 >第<%= index%>位</h3>
@@ -185,6 +197,8 @@
         
       <% end %>
       
+      <%= link_to "いいね！ランキング", users_iine_ranking_path , id:"posts_title2"%>
+      
       
       
      </div>
@@ -207,6 +221,8 @@
             <%end%>
           
           <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
+            <%  dt = comment.created_at %>
+            <%= dt.strftime("%Y年%m月%d日 %H時%M分")%>
          
          <br>
          
@@ -246,10 +262,10 @@
           <div class="treemenu">
           
  
-          <% $oyacategories.each do |o| %>
+          <% $oyacategories.each.with_index(1) do |o,index| %>
           
 
-            
+           <div class="category_color<%=index%>">
             
             <p class="lv1btn"><%= $o %>
               
@@ -266,7 +282,7 @@
             <% $categories.where(oyacategory_id: o.id).each do |c| %>
            
               
-              <p class="lv2btn"><%= c.name %><%= c.posts.count %>  </p>
+              <p class="lv2btn"><%= c.name %> (<%= c.posts.count %>)  </p>
               
                 <div class="lv2body">
                  
@@ -280,7 +296,7 @@
             
             </div>
             
-            
+            </div> 
             
             <% end %>
           </div>

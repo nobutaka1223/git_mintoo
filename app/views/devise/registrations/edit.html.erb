@@ -30,9 +30,15 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
-
+  
+  <h4>プロフィール画像選択</h4>
   <div class="field">
     <%= f.file_field :avatar %>
+  </div>
+  
+      <div class="field">
+    <%= f.label :twitter_account %><br />
+    <%= f.text_field :twitter_account,"twitterアカウント名" autocomplete: "off", :size=>"60" %>
   </div>
 
 

@@ -14,7 +14,13 @@
       
       <%= link_to "#{post.title}",  post_path(post.id) , id:"posts_title"%>
       
-      いいね！数：<%= post.likes_count %>  コメント数：<%= post.comments_count %><p>
+      いいね！数：<%= post.likes_count %>  コメント数：<%= post.comments_count %>
+      
+      <% if current_user.id == @user.id && post.unread == 1%>
+        <%= image_tag "/images/midokukome.png" , :class => "midokukome"%>
+      <% end %>
+      
+      <p>
       
       
     </li>  

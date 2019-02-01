@@ -67,4 +67,8 @@ gem 'dotenv-rails'
 
 gem 'twitter'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # gem 'jquery-turbolinks'

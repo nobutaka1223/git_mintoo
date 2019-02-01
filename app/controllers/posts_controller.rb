@@ -6,8 +6,7 @@ class PostsController < ApplicationController
     def index
     
         @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(10)
-        
-        
+       
         
     end
     
@@ -17,6 +16,12 @@ class PostsController < ApplicationController
         
         @post = Post.includes(:user,:imagetexts).find(params[:id])
         @comments = @post.comments
+        
+        if @post.user_id == current_user.id && @post.unread == 1
+            @post.update_attribute(:unread, 0)
+        end
+            
+        
         render :layout => "second_layout"
         
     end
@@ -59,12 +64,7 @@ class PostsController < ApplicationController
             end   
                 
             
-        # チェックボックス入れてtwitterに投稿する場合
-        #   if params.require(:page) 
-            
-        #     @client.update("#{@post.title}\r")
-        #     redirect_to root_path
-        #   end
+      
             redirect_to action: :create_done and return
           
         else
@@ -118,12 +118,7 @@ class PostsController < ApplicationController
             
           @post.update(update_post_params)   
             
-        # チェックボックス入れてtwitterに投稿する場合
-        #   if params.require(:page) 
-            
-        #     @client.update("#{@post.title}\r")
-        #     redirect_to root_path
-        #   end
+       
           redirect_to action: :create_done and return
           
         else
@@ -180,23 +175,7 @@ class PostsController < ApplicationController
     end
     
     
-    # twitterに投稿する場合
-    # def twitter_client
-    #     # Twitter::Client.new(
-    #     #     oauth_token: current_user.token,
-    #     #     oauth_token_secret: current_user.secret
-    #     # )
-    #     @client = Twitter::REST::Client.new do |config|
-            
-    #         config.consumer_key =  ENV['TWITTER_API_KEY']
-    #         config.consumer_secret = ENV['TWITTER_API_SECRET']
-            
-    #         config.access_token =  current_user.accesstoken
-    #         config.access_token_secret =  current_user.secrettoken
-            
-      
-    #     end   
-    # end
+  
             
     
 end

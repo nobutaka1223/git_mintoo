@@ -44,6 +44,12 @@
     <%= f.file_field :avatar %>
   </div>
 
+
+    <div class="field">
+    <%= f.label :twitter_account %><br />
+    <%= f.text_field :twitter_account,"twitterアカウント名" autocomplete: "off", :size=>"60" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

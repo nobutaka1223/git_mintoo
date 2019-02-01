@@ -12,6 +12,8 @@ Rails.application.routes.draw do
                                     registrations: 'registrations'
   }  #投稿一覧画面
   
+  
+  get 'users/iine_ranking' => 'users#iine_ranking'
   post 'users/inquiry_send' => 'users#inquiry_send'
   get 'users/inquiry' => 'users#inquiry'
   

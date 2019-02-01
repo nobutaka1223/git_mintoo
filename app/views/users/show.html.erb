@@ -7,6 +7,8 @@
             <%=simple_format(h( @user.introduction)) %>
         </div>
     <br>
+    
+     <%= link_to image_tag('/images/twitter_account.png', { :border => '0', :alt => 'ツイッターアカウント'}), "http://twitter.com/#{@user.twitter_account}"  if @user.twitter_account.present? %>  
    
     
     <br>

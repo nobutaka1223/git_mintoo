@@ -8,7 +8,7 @@ class MypageCommentsController < ApplicationController
          @user = User.find(params[:mypage_comment][:userpage])
        
       
-         
+         @user.update_attribute(:unread, 1) unless @mypagecomment.user_id == current_user.id 
         
          #redirect_to "/posts/#{@comment.post.id}"   コメントと結びつく投稿の詳細画面に遷移
    end

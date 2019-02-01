@@ -2,8 +2,8 @@
  
     <% if user_signed_in? %>
       <%= form_for (@mypagecomment), remote: true do |f|  %>
-        <%= f.label :text %>
-        <%= f.text_field :text ,:size=>"80×5" %>
+        <%= f.label :text,"コメント内容" %>
+        <%= f.text_area :text ,:size=>"80×10" %>
         <%# わけわからんがhidden_fieldにも=がいるらしい%>
         <%=  f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :userpage, value: params[:id] %>

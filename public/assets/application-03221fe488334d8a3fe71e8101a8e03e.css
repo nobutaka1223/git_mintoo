@@ -1,0 +1,764 @@
+@charset "UTF-8";/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
+
+/* line 24, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+h1, h2, h3, h4, h5, h6, body {
+  line-height: 1.57;
+  letter-spacing: 0.15em;
+  font-size: 16px;
+  color: #666666;
+  font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+  margin: 0;
+}
+
+/* line 33, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+a {
+  text-decoration: none;
+  color: #666666;
+}
+/* line 37, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+a:hover {
+  color: #57c3e9;
+}
+
+/* line 46, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+header.header {
+  background-color: #fff;
+  border-bottom: 1px solid #d8d8d8;
+  height: 300px;
+  background-image: url("");
+  background-size: cover;
+  width: 100%;
+}
+/* line 56, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+header.header img.title {
+  margin: 0,auto;
+}
+/* line 64, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+git
+header.header div.header__bar:after {
+  content: " ";
+  display: block;
+  height: 50px;
+}
+/* line 70, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+header.header div.header__bar h1.grid-6 {
+  font-size: 60px;
+  line-height: 60px;
+  font-family: KG Happy;
+}
+/* line 76, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+header.header div.header__bar h1.grid-6 a.post {
+  width: 120px;
+  display: inline-left;
+  margin-left: 10px;
+}
+
+/* line 95, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user_recentcomment {
+  float: right;
+}
+
+/* line 100, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user {
+  padding: 20px;
+  height: 150px;
+  margin: auto;
+  width: 200px;
+}
+
+/*　画面サイズが750pxから1460pxまではここを読み込む　*/
+@media screen and (min-width: 751px) and (max-width: 1460px) {
+  /* line 118, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  header {
+    width: 1560px !important;
+  }
+
+  /* line 124, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #user_recentcomment {
+    position: absolute;
+    top: 300px;
+    left: 1200px;
+  }
+
+  /* line 129, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #user {
+    padding: 20px;
+    height: 150px;
+    margin: auto;
+    width: 200px;
+  }
+}
+/*　画面サイズが750pxまではここを読み込む　*/
+@media screen and (max-width: 750px) {
+  /* line 148, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #iinerank_recentcom {
+    margin: 200px 0px 0px 0px !important;
+  }
+
+  /* line 152, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #iinerank {
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    border-width: 0.5;
+    border-color: #bbb;
+    border-style: solid;
+    border-radius: 10px;
+    width: 350px;
+  }
+
+  /* line 163, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  .treemenu {
+    float: left !important;
+    width: 256px;
+    margin-left: 200px !important;
+  }
+
+  /* line 171, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  header {
+    width: 780px !important;
+  }
+
+  /* line 175, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  img.title {
+    width: 80% !important;
+  }
+
+  /* line 180, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #user_recentcomment {
+    float: none !important;
+    position: static !important;
+    display: block;
+    margin: auto !important;
+    width: 100% !important;
+  }
+
+  /* line 190, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #user {
+    padding: 20px;
+    height: 150px;
+    margin: auto;
+    width: 200px;
+    margin: auto !important;
+  }
+
+  /* line 198, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #recent_comments {
+    display: none;
+  }
+
+  /* line 203, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #menu {
+    height: auto !important;
+    display: block;
+    margin: auto !important;
+    width: 100% !important;
+  }
+  /* line 210, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #menu h2 {
+    text-align: center !important;
+  }
+
+  /* line 216, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  #index {
+    position: static !important;
+    margin: auto !important;
+    width: 100% !important;
+  }
+
+  /* line 222, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  .render_post {
+    margin: auto !important;
+    padding: 15px 15px 15px 15px !important;
+    border-width: 1;
+    border-color: #6699cc;
+    border-style: solid;
+    border-radius: 10px;
+    width: 430px !important;
+  }
+  /* line 230, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  .render_post h3 {
+    font-size: 20px;
+  }
+  /* line 234, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  .render_post p.subtitle {
+    margin: 10px 0px;
+    font-size: 200%;
+    border-bottom: 1px solid #ddd;
+  }
+  /* line 240, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+  .render_post p.content {
+    margin: 50px 0px;
+  }
+}
+/* line 253, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav {
+  float: right;
+}
+/* line 260, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span {
+  top: 5px;
+  display: block;
+  float: right;
+  margin-left: 60px;
+  width: 100%;
+  height: 100px;
+  font-size: 1em;
+  cursor: pointer;
+  position: relative;
+}
+/* line 270, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span p {
+  float: right;
+  font-size: 1.5em;
+  margin-left: 20px;
+}
+/* line 275, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span:hover ul {
+  color: #57c3e9;
+  display: block;
+}
+/* line 280, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span ul {
+  display: none;
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 200px;
+}
+/* line 287, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span ul:hover {
+  display: block;
+}
+/* line 291, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span ul li {
+  background-color: #f0f0f0;
+}
+/* line 293, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#user div.user_nav span ul li a {
+  display: block;
+  padding: 10px 20px;
+  text-align: left;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+/* line 308, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.user_image {
+  margin-left: auto;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 90px;
+  border-color: #6699cc;
+  border-width: 3px;
+}
+
+/* line 320, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.div_your_icon_image {
+  margin-left: auto;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 200px;
+  border-color: #6699cc;
+  border-width: 3px;
+  margin: auto;
+}
+
+/* line 336, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.poster_image {
+  float: left;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 60px;
+  border-color: #6699cc;
+  border-width: 3px;
+}
+
+/* line 347, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.poster_image2 {
+  float: right;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 60px;
+  border-color: #6699cc;
+  border-width: 3px;
+  display: inline;
+}
+
+/* line 359, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.your_icon_image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* line 368, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.anonimous_image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* line 375, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.commenter_image {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 60px;
+  border-color: #6699cc;
+  border-width: 3px;
+}
+
+/* line 386, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.midokukome {
+  width: 45px;
+  height: 45px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* line 399, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#menu {
+  float: left;
+  display: block;
+  margin: 0  0;
+  width: 270px;
+}
+
+/* line 409, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#container {
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* line 416, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color1 {
+  background-color: #ffd5ec;
+}
+
+/* line 420, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color2 {
+  background-color: #eeeeee;
+}
+
+/* line 424, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color3 {
+  background-color: #ccffff;
+}
+
+/* line 429, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color4 {
+  background-color: #ffffcc;
+}
+
+/* line 434, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color5 {
+  background-color: #ffff66;
+}
+
+/* line 439, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color6 {
+  background-color: #ccccff;
+}
+
+/* line 444, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color7 {
+  background-color: #eeeeee;
+}
+
+/* line 449, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.category_color8 {
+  background-color: #ffd5ec;
+}
+
+/* line 461, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu {
+  float: right;
+  width: 256px;
+}
+
+/*階層1*/
+/* line 467, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1btn {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 10px;
+  color: #6699cc;
+}
+/* line 472, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1btn:hover {
+  color: #292929;
+}
+
+/* line 477, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1body {
+  display: none;
+  padding: 0 10px 5px 10px;
+}
+
+/* line 481, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1body a {
+  line-height: 2.0;
+}
+
+/*階層2*/
+/* line 485, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1body .lv2btn {
+  cursor: pointer;
+  padding: 5px 10px 5px 0;
+  margin-left: 20px;
+}
+
+/* line 491, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1body .lv2body {
+  display: none;
+  padding: 0 10px 5px 10px;
+}
+
+/* line 496, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.treemenu .lv1body .lv2body a {
+  line-height: 2.0;
+}
+
+/* line 516, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#index {
+  float: left;
+  width: 50%;
+}
+
+/* line 527, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.oyabody {
+  margin: 20px;
+}
+
+/* line 535, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.clearfix:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+/* line 542, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#clearfix:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+/* line 552, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.post_head_foot {
+  background-color: #D9E5FF;
+  padding: 10px;
+  border-radius: 15px;
+}
+/* line 558, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.post_head_foot h2.title {
+  border-radius: 15px;
+  background-color: #FFEEFF;
+}
+/* line 563, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.post_head_foot :after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+/* line 570, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.render_post {
+  margin: 0px 50px 30px;
+  padding: 15px 30px 15px 30px;
+  border-width: 1;
+  border-color: #6699cc;
+  border-style: solid;
+  border-radius: 10px;
+  width: 800px;
+}
+/* line 578, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.render_post h3 {
+  font-size: 20px;
+}
+/* line 582, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.render_post p.subtitle {
+  margin: 10px 0px;
+  font-size: 200%;
+  border-bottom: 1px solid #ddd;
+}
+/* line 588, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.render_post p.content {
+  margin: 50px 0px;
+}
+
+/* line 596, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#posts_title {
+  font-size: 24px;
+}
+
+/* line 600, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#posts_title2 {
+  font-size: 18px;
+}
+
+/* line 617, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.introduction_and_recentcomment {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 3px #555;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 635, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.introduction_and_recentcomment:before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 20%;
+  margin-left: -15px;
+  border: 12px solid transparent;
+  border-bottom: 12px solid #FFF;
+  z-index: 2;
+}
+
+/* line 646, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.introduction_and_recentcomment:after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 20%;
+  margin-left: -17px;
+  border: 14px solid transparent;
+  border-bottom: 14px solid #555;
+  z-index: 1;
+}
+
+/* line 657, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.introduction_and_recentcomment p {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 669, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.mannnaka {
+  text-align: center;
+  line-height: 15px;
+  font-size: 20px;
+}
+
+/* line 679, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.comment_container {
+  width: 900px;
+  margin: 0px 50px 30px;
+  padding: 30px;
+}
+
+/* line 685, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.comment {
+  clear: both;
+}
+
+/* line 691, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.comment_others {
+  clear: both;
+  float: right;
+}
+
+/* line 701, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.like-button_already {
+  width: 55px;
+  height: 55px;
+  background: url("/images/iine_icon.jpeg") left top no-repeat;
+}
+
+/* line 709, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.like-button_yet {
+  width: 55px;
+  height: 55px;
+  background: url("/images/iine_icon_notyet.jpeg") left top no-repeat;
+}
+
+/* line 717, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+textarea {
+  height: 150px;
+}
+
+/* line 722, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.mypage_comments {
+  height: 300px;
+  width: 100%;
+  overflow: scroll;
+}
+
+/* line 733, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+footer {
+  clear: both;
+}
+
+/* line 741, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav {
+  width: 750px;
+  height: 40px;
+  margin-left: 50px;
+  padding: 0;
+  display: flex;
+}
+
+/* line 748, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav li {
+  position: relative;
+  list-style: none;
+}
+
+/* line 752, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav li a {
+  display: block;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  line-height: 2.8;
+  background: #9fb7d4;
+  transition: 0.5s;
+  text-decoration: none;
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+/* line 766, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav > li:hover > a {
+  /*layer-1*/
+  color: orange;
+  background: #afc6e2;
+}
+
+/* line 770, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav > li li:hover > a {
+  /*layer-2*/
+  color: olive;
+  background: #afc6e2;
+}
+
+/* line 774, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav li ul {
+  top: 40px;
+  left: -40px;
+  position: absolute;
+}
+
+/* line 779, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav li ul li {
+  overflow: hidden;
+  height: 0;
+  transition: 0.2s;
+}
+
+/* line 784, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav li ul li a {
+  border-top: 1px solid #eee;
+}
+
+/* line 787, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.nav li:hover > ul > li {
+  overflow: visible;
+  height: 40px;
+}
+
+/* line 799, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.modal-lg-extend {
+  width: 1200px;
+}
+
+/* line 808, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#iinerank_recentcom {
+  margin: 200px 0px;
+}
+
+/* line 812, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#iinerank {
+  padding: 10px 10px 10px 10px;
+  border-width: 0.5;
+  border-color: #bbb;
+  border-style: solid;
+  border-radius: 10px;
+  width: 350px;
+}
+
+/* line 821, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+#recent_comments {
+  padding: 10px 10px 10px 10px;
+  border-width: 0.5;
+  border-color: #bbb;
+  border-style: solid;
+  border-radius: 10px;
+  width: 350px;
+}
+
+/* line 837, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.recent_comment {
+  margin: 50px 0px;
+}
+/* line 842, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.recent_comment ::after {
+  display: block;
+  content: "";
+}
+
+/* line 849, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.recent_comment_poster_image {
+  float: left;
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 45px;
+  border-color: #6699cc;
+  border-width: 2px;
+}
+
+/* line 861, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.recent_comment_icon_image, .recent_comment_anonimous_image {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 100px;
+  border-color: #6699cc;
+  border-width: 3px;
+  margin: auto;
+}
+
+/* line 874, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.content_row {
+  margin: 0px 0px 100px 0px;
+}
+
+/* line 882, /home/ubuntu/workspace/mintoo/app/assets/stylesheets/original.css.scss */
+.twitter {
+  margin: auto;
+}

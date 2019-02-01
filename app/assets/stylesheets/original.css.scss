@@ -6,6 +6,14 @@ $gray: #D8D8D8;
 $lightGray: #f5f5f3;
 $white: white;
 $mizuiro: #6699cc;
+$usumidori: #CCFFFF;
+$hadairo: #FFFFCC;
+$kiiro: #FFFF66;
+$umiiro: #CCCCFF;
+$nezumi: #EEEEEE;
+$pink: #FFD5EC;
+
+
 
 
 
@@ -374,6 +382,14 @@ img.title{
           border-width: 3px;
           
         }
+        
+  .midokukome{
+            width: 45px;
+            height: 45px;
+            max-width:100%;
+            max-height:100%;
+    
+  }
 
 
 
@@ -395,6 +411,52 @@ img.title{
   overflow: hidden;
   background: #fff;
 }
+
+
+.category_color1{
+  background-color: $pink;
+}
+
+.category_color2{
+  background-color: $nezumi;
+}
+
+.category_color3{
+  background-color: $usumidori;
+
+}
+
+.category_color4{
+  background-color:$hadairo;
+
+}
+
+.category_color5{
+  background-color:$kiiro;
+
+}
+
+.category_color6{
+  background-color:$umiiro;
+
+}
+
+.category_color7{
+  background-color:$nezumi;
+
+}
+
+.category_color8{
+  background-color:$pink;
+}
+
+
+
+
+
+
+
+
 
 .treemenu {
   float: right;
@@ -423,6 +485,7 @@ img.title{
 .treemenu .lv1body .lv2btn {
   cursor: pointer;
   padding: 5px 10px 5px 0;
+  margin-left: 20px;
   
 }
 .treemenu .lv1body .lv2body {

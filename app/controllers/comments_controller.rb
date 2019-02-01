@@ -5,6 +5,9 @@ class CommentsController < ApplicationController
          @comments = Comment.where(post_id: params[:post_id])
          @post = Post.find(params[:post_id])
          
+         @post.update_attribute(:unread, 1) unless @post.user.id == current_user.id 
+         
+         
         
          #redirect_to "/posts/#{@comment.post.id}"   コメントと結びつく投稿の詳細画面に遷移
     end

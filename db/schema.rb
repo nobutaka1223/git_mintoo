@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190126070833) do
+ActiveRecord::Schema.define(version: 20190130065702) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20190126070833) do
     t.integer  "comments_count", limit: 4,   default: 0
     t.string   "youtube",        limit: 255
     t.string   "series",         limit: 255
+    t.integer  "unread",         limit: 4,   default: 0
   end
 
   add_index "posts", ["tool_id"], name: "fk_rails_2b46186b11", using: :btree
@@ -120,6 +121,8 @@ ActiveRecord::Schema.define(version: 20190126070833) do
     t.string   "accesstoken",            limit: 255
     t.string   "secrettoken",            limit: 255
     t.integer  "likes_count",            limit: 4,     default: 0
+    t.integer  "unread",                 limit: 4,     default: 0
+    t.string   "twitter_account",        limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

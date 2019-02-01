@@ -18,6 +18,10 @@
     
         <br><br>
         
+    <% unless @post.youtube.blank? %>
+    <%= youtube(@post) %>
+    <% end %>
+        
  <%#コントローラーでuserとimagetextsをincludeしたら表示できた。eachの書き方とインスタンス変数post．image textsの書き方もこれでいいらしい%>
     <% @post.imagetexts.each do |imagetexts|%>
     
@@ -38,9 +42,7 @@
     
     <% end %>
 
-    <% unless @post.youtube.blank? %>
-    <%= youtube(@post) %>
-    <% end %>
+
     
     
  

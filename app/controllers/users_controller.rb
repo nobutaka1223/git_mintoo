@@ -21,6 +21,11 @@ class UsersController < ApplicationController
         
        
         @post_series = current_user.posts.where("series IN(?)", @series) 
+        
+         if @user.id == current_user.id && @user.unread == 1
+            @user.update_attribute(:unread, 0)
+         end
+        
         render :layout => "second_layout"
         
     end 
@@ -34,6 +39,13 @@ class UsersController < ApplicationController
         current_user.update(update_params)
     end
     
+    
+    
+    def iine_ranking
+       
+       @users = User.order(likes_count: :desc).first(10)
+        
+    end
     
     
     # def series
@@ -112,7 +124,7 @@ class UsersController < ApplicationController
     
     private
     def update_params
-        params.require(:user).permit(:nickname, :email, :introduction, :avatar)
+        params.require(:user).permit(:nickname, :email, :introduction, :avatar, :twitter_account)
     end
     
     def series_params

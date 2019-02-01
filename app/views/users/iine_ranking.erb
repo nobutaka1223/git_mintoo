@@ -1,0 +1,44 @@
+    
+     <h4>いいね！多い人ランキング</h4>
+      
+      <% @users .each.with_index(1) do |user, index| %>
+      
+        <%  next if user.likes_count == 0 %>
+        <div class="recent_comment">
+          
+            <h3 >第<%= index%>位</h3>
+          
+           <span>
+             
+             
+          
+              <% if user.avatar_file_name %>
+                <div class="recent_comment_poster_image"><%= image_tag user.avatar ,:class => "recent_comment_icon_image" %></div>
+               <%else%>
+                <div class="recent_comment_poster_image"><%= image_tag "/images/neko_free.jpg" ,:class => "recent_comment_anonimous_image" %></div>
+              <%end%>
+              
+              <h5 style="display:inline;"><%= link_to "#{user.nickname}",  user_path(user.id) , id:"posts_title2"%></h5>
+              
+               
+           </span>
+           
+          <br> <br>
+         
+         <div class="iine_rank_div"> 
+           
+              <p>いいね！数<span><%= user.likes_count %></span></p>
+          
+         </div>
+           
+          
+       </div>   
+          
+        
+      <% end %>
+      
+  
+      
+      
+      
+     </div>
