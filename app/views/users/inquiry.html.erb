@@ -2,7 +2,7 @@
 
 <%= form_tag("/users/inquiry_send", method: "post") do %>
 
-    <%  user = current_user if currentuser%>
+    <%  user = current_user if current_user%>
     <%= label_tag(:name, "お名前" )%>
     <%= text_field_tag :name ,  user.nickname%>
     
