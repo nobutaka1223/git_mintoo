@@ -8,10 +8,10 @@
     <% end %>
     
     <%= label_tag(:name, "お名前" )%>
-    <%= text_field_tag :name ,  user.nickname%>
+    <%= text_field_tag :name ,  nickname%>
     
     <%= label_tag(:email, "返信用アドレス" )%>
-    <%= text_field_tag :email ,user.email %>
+    <%= text_field_tag :email ,email %>
     
     <%= label_tag(:text, "問い合わせ内容") %>
     <%= text_area_tag :text %>
