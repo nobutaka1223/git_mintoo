@@ -13,10 +13,22 @@
         <%= f.text_field :title,:size=>"50" %>
       <br>
       
+       <% n = 1 %>
+      <% 3.times do %>
+        
+      <%= f.fields_for :posttools do |p| %>
+        <%= p.label :tool, "カテゴリ#{n}つ目"%>
+        <%= p.collection_select :tool_id, Tool.all, :id, :name, include_blank:true %>
       
-        <%= f.label :tool, "カテゴリ"%>
-        <%= f.collection_select :tool_id, Tool.all, :id, :name%>
+
+      <% end %>
+        <% n += 1 %>
+      <% end %>
+        
       <br>
+      
+      
+      
       <br>
       
     

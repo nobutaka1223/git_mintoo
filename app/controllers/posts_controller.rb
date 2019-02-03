@@ -33,6 +33,7 @@ class PostsController < ApplicationController
         
         @post = Post.new
         @post.imagetexts.build
+        @post.posttools.build
         # @twitter_checkbox= true
         @error = params[:flash][:error] unless params[:flash].blank?
         
@@ -45,18 +46,35 @@ class PostsController < ApplicationController
 
     def create
         
-            
+        
         #  current_user.posts.create(post_params)だけでは下のif @postがno methoderrorになってしまったので、@postに入れてあげたら動いた
-                
+        
         @post = current_user.posts.new(post_params)
-    
+
         
         if @post.valid?
             
             
-            if @post.imagetexts.present?
+            if @post.imagetexts.present? && @post.posttools.present?
+                
+
+                
+                
+                if @post.posttools[0].tool_id ==  @post.posttools[1].tool_id 
+                    @post.posttools[1].delete
+                end
+                
+                if @post.posttools[0].tool_id ==  @post.posttools[2].tool_id 
+                    @post.posttools[2].delete
+                end
+                
+                if @post.posttools[1].tool_id ==  @post.posttools[2].tool_id 
+                    @post.posttools[2].delete
+                end
                 
                 @post.save
+                
+                
             else
             
                 redirect_to action: :new, flash: { error: "投稿の内容（見出し・本文・画像）のいずれかを入力してください。" }  and return
@@ -147,21 +165,28 @@ class PostsController < ApplicationController
     private
     
     def post_params
+        
+            
+            
         params.require(:post).permit(
             :user_id,
             :title, 
-            :tool_id, 
             :youtube,
             
-            imagetexts_attributes:[:id, :image, :content, :status, :subtitle])
+            imagetexts_attributes:[:id, :image, :content, :status, :subtitle],
+            
+            posttools_attributes:[:tool_id])
             
     end
+    
+ 
+
+    
     
     def    update_post_params
         params.require(:post).permit(
             :user_id,
             :title, 
-            :tool_id, 
             :youtube,
             
             imagetexts_attributes:[:id, :image, :content, :status, :subtitle, :_destroy])

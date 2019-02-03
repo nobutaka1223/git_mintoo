@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190130065702) do
+ActiveRecord::Schema.define(version: 20190203060819) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 20190130065702) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
-    t.integer  "tool_id",        limit: 4
     t.string   "title",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -84,8 +83,17 @@ ActiveRecord::Schema.define(version: 20190130065702) do
     t.integer  "unread",         limit: 4,   default: 0
   end
 
-  add_index "posts", ["tool_id"], name: "fk_rails_2b46186b11", using: :btree
   add_index "posts", ["user_id"], name: "fk_rails_5b5ddfd518", using: :btree
+
+  create_table "posttools", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.integer  "tool_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "posttools", ["post_id"], name: "index_posttools_on_post_id", using: :btree
+  add_index "posttools", ["tool_id"], name: "index_posttools_on_tool_id", using: :btree
 
   create_table "tools", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -133,8 +141,9 @@ ActiveRecord::Schema.define(version: 20190130065702) do
   add_foreign_key "imagetexts", "posts"
   add_foreign_key "mypage_comments", "users"
   add_foreign_key "oyacategories", "users"
-  add_foreign_key "posts", "tools"
   add_foreign_key "posts", "users"
+  add_foreign_key "posttools", "posts"
+  add_foreign_key "posttools", "tools"
   add_foreign_key "tools", "categories"
   add_foreign_key "tools", "users"
 end

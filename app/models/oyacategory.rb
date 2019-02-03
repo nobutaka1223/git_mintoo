@@ -14,7 +14,7 @@ class Oyacategory < ActiveRecord::Base
      posts_num = 0
      
      tools.each do |t|
-       posts_num += t.posts.count
+       posts_num += t.posttools.count
      end
      
      return posts_num

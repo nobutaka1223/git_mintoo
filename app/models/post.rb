@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
     has_many :imagetexts, dependent: :destroy
+    has_many :posttools, dependent: :destroy
     
     accepts_nested_attributes_for :imagetexts ,allow_destroy: true,
       reject_if: proc {|attributes| 
@@ -13,10 +14,11 @@ class Post < ActiveRecord::Base
     # rejectifでcontentかimageかsubtitleがない場合はレコードを作成しない
     
 
-    
+    accepts_nested_attributes_for :posttools ,allow_destroy: true
+
     
     validates :title,  presence: true
-    validates :tool_id,       presence: true
+   
     
     
     

@@ -48,9 +48,7 @@
     
  
         
-    
-  
-        <!--メニュー左端-->
+   <!--メニュー左端-->
     <div id="menu">
       
       <h2>カテゴリー</h2>
@@ -61,11 +59,11 @@
           <div class="treemenu">
           
  
-          <% $oyacategories.each do |o| %>
+          <% $oyacategories.each.with_index(1) do |o,index| %>
           
 
+           <div class="category_color<%=index%>">
             
-            <%#ちょっと助長かもしれんが、ここで繰り返し処理してカテゴリの後ろに記事の数を入れている%>
             <p class="lv1btn"><%= $o %>
               
               <%= o.name %> (<%= o.posts_counts  %>) 
@@ -74,19 +72,19 @@
               
             </p>
              
-            
+           
             
             <div class="lv1body">
             
             <% $categories.where(oyacategory_id: o.id).each do |c| %>
            
               
-              <p class="lv2btn"><%= c.name %><%= c.posts.count %>  </p>
+              <p class="lv2btn"><%= c.name %> (<%= c.posttools.count %>)  </p>
               
                 <div class="lv2body">
-                  
+                 
                   <% $tools.where(category_id: c.id).each do |t| %>
-                    <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posts.count %>) </p>
+                    <p class="lv2btn"><%= link_to"●#{t.name}", tool_path(t.id) %> (<%=t.posttools.count %>) </p>
                   <% end %>
 	              </div>
 
@@ -95,7 +93,7 @@
             
             </div>
             
-            
+            </div> 
             
             <% end %>
           </div>
