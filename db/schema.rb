@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190203060819) do
+ActiveRecord::Schema.define(version: 20190203060136) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -85,16 +85,6 @@ ActiveRecord::Schema.define(version: 20190203060819) do
 
   add_index "posts", ["user_id"], name: "fk_rails_5b5ddfd518", using: :btree
 
-  create_table "posttools", force: :cascade do |t|
-    t.integer  "post_id",    limit: 4
-    t.integer  "tool_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "posttools", ["post_id"], name: "index_posttools_on_post_id", using: :btree
-  add_index "posttools", ["tool_id"], name: "index_posttools_on_tool_id", using: :btree
-
   create_table "tools", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.datetime "created_at",              null: false
@@ -142,8 +132,6 @@ ActiveRecord::Schema.define(version: 20190203060819) do
   add_foreign_key "mypage_comments", "users"
   add_foreign_key "oyacategories", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "posttools", "posts"
-  add_foreign_key "posttools", "tools"
   add_foreign_key "tools", "categories"
   add_foreign_key "tools", "users"
 end
