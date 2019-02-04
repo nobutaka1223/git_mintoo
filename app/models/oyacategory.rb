@@ -1,7 +1,7 @@
 class Oyacategory < ActiveRecord::Base
     
-    has_many :categories
-    has_many :tools,  through: :categories
+    has_many :categories, dependent: :destroy
+    has_many :tools,  through: :categories, dependent: :destroy
     belongs_to :user
     
     validates :name,  presence: true

@@ -1,8 +1,8 @@
 class Category < ActiveRecord::Base
   belongs_to :user
   belongs_to :oyacategories
-  has_many :tools
-  has_many :posttools,  through: :tools
+  has_many :tools, dependent: :destroy
+  has_many :posttools,  through: :tools, dependent: :destroy
   validates :name,  presence: true
   
   
