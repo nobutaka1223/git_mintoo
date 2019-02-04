@@ -22,6 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             
         else
             
+            binding.pry
             if @user.persisted?
             flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
             sign_in_and_redirect @user, event: :authentication

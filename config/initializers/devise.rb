@@ -276,7 +276,9 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :twitter, ENV['TWITTER_API_KEY'] , ENV['TWITTER_API_SECRET']
+  
+  
+  config.omniauth :twitter, ENV['TWITTER_API_KEY'] , ENV['TWITTER_API_SECRET'], callback_url: "https://mintoo.herokuapp.com/users/auth/twitter/callback"
   
   config.secret_key = '50500fd79bac077baf37e343b151b2486310d53c32faffc545e942093d4d472f821438a1e3ccef8d53c58dcb6eb13f8fa2f34dfe3db3497e56fff00972d165a9'
 end 
