@@ -16,10 +16,12 @@ class PostsController < ApplicationController
         
         @post = Post.includes(:user,:imagetexts).find(params[:id])
         @comments = @post.comments
-        
-        if @post.user_id == current_user.id && @post.unread == 1
+       
+       if current_user
+        if @post.user.id == current_user.id && @post.unread == 1
             @post.update_attribute(:unread, 0)
         end
+       end
             
         
         render :layout => "second_layout"
@@ -50,8 +52,9 @@ class PostsController < ApplicationController
         #  current_user.posts.create(post_params)だけでは下のif @postがno methoderrorになってしまったので、@postに入れてあげたら動いた
         
         @post = current_user.posts.new(post_params)
-
         
+       
+     
         if @post.valid?
             
             
@@ -59,24 +62,15 @@ class PostsController < ApplicationController
                 
 
                 
+     
                 
-                if @post.posttools[0].tool_id ==  @post.posttools[1].tool_id 
-                    @post.posttools[1].delete
-                end
                 
-                if @post.posttools[0].tool_id ==  @post.posttools[2].tool_id 
-                    @post.posttools[2].delete
-                end
-                
-                if @post.posttools[1].tool_id ==  @post.posttools[2].tool_id 
-                    @post.posttools[2].delete
-                end
                 
                 @post.save
                 
-                
+               
             else
-            
+               
                 redirect_to action: :new, flash: { error: "投稿の内容（見出し・本文・画像）のいずれかを入力してください。" }  and return
 
             end   
@@ -87,7 +81,7 @@ class PostsController < ApplicationController
           
         else
             
-            
+            binding.pry
             redirect_to action: :new, flash: { error: @post.errors.full_messages }  and return
 
             
@@ -175,7 +169,7 @@ class PostsController < ApplicationController
             
             imagetexts_attributes:[:id, :image, :content, :status, :subtitle],
             
-            posttools_attributes:[:tool_id])
+            posttools_attributes:[:id,:tool_id,:post_id])
             
     end
     

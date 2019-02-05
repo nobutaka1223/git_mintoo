@@ -19,6 +19,9 @@
       <%= f.fields_for :posttools do |p| %>
         <%= p.label :tool, "カテゴリ#{n}つ目"%>
         <%= p.collection_select :tool_id, Tool.all, :id, :name, include_blank:true %>
+        
+        <%= p.hidden_field :post_id, :value => @post.id %>
+        
       
 
       <% end %>
