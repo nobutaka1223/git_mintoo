@@ -1,4 +1,9 @@
 class Post < ActiveRecord::Base
+    before_save do
+        posttools.each { |pt| pt.mark_for_destruction if pt.tool_id.nil? }
+        
+    end
+    
     belongs_to :user
     belongs_to :tool
     # dependent:destroyはpostレコードを削除したときに外部キーを持つテーブルのレコードも削除してくれる。

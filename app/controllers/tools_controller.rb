@@ -16,7 +16,14 @@ class ToolsController < ApplicationController
     
 
     def show
-        @posts = Post.where(tool_id: params[:id]).page(params[:page]).per(5)
+        @posttools = Posttool.where(tool_id: params[:id])
+         pts = []
+        @posttools.each do |pt|
+            pts << pt.post_id
+        end
+            
+        @posts = Post.where(id: pts).page(params[:page]).per(5)
+
         @tool = Tool.find_by(id: params[:id])
        
        

@@ -53,18 +53,14 @@ class PostsController < ApplicationController
         
         @post = current_user.posts.new(post_params)
         
-       
+        
+     
+     
      
         if @post.valid?
             
             
             if @post.imagetexts.present? && @post.posttools.present?
-                
-
-                
-     
-                
-                
                 
                 @post.save
                 
@@ -74,14 +70,12 @@ class PostsController < ApplicationController
                 redirect_to action: :new, flash: { error: "投稿の内容（見出し・本文・画像）のいずれかを入力してください。" }  and return
 
             end   
-                
-            
       
             redirect_to action: :create_done and return
           
         else
             
-            binding.pry
+    
             redirect_to action: :new, flash: { error: @post.errors.full_messages }  and return
 
             
