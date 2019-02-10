@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190210162418) do
+ActiveRecord::Schema.define(version: 20190210165922) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(version: 20190210162418) do
   add_index "posttools", ["tool_id"], name: "index_posttools_on_tool_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
-    t.string   "session_id", limit: 255,        null: false
-    t.text     "data",       limit: 4294967295
+    t.string   "session_id", limit: 255,   null: false
+    t.text     "data",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
