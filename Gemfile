@@ -67,6 +67,8 @@ gem 'dotenv-rails'
 
 gem 'twitter'
 
+gem 'activerecord-session_store'
+
 group :production do
   gem 'rails_12factor'
 end
