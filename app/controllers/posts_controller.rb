@@ -7,7 +7,6 @@ class PostsController < ApplicationController
     
         @posts = Post.includes(:user,:imagetexts).order("created_at DESC").page(params[:page]).per(10)
        
-        
     end
     
     
