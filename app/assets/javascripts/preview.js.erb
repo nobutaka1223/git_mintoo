@@ -19,6 +19,8 @@ $(function(){
    <!--if (!files.length || !window.FileReader){-->
    <!--$preview.empty();-->
    <!--     }-->
+   
+
     
     
 
@@ -27,12 +29,15 @@ $(function(){
       return function(e) {
         //既存のプレビューを削除
         $preview.empty();
+        
+        console.log(file)
         // .prevewの領域の中にロードした画像を表示するimageタグを追加
         $preview.append($('<img>').attr({
                   src: e.target.result,
                   width: "150px",
                   class: "preview_display0",
-                  <%= image_path("file.name") %>
+                  title: file.name
+                  
               }));
       };
     })(file);
